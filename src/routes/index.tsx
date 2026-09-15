@@ -32,6 +32,8 @@ import portfolio2 from "@/assets/portfolio-2.jpg";
 import portfolio3 from "@/assets/portfolio-3.jpg";
 import portfolio4 from "@/assets/portfolio-4.jpg";
 
+
+
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
@@ -194,7 +196,7 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
           SIGA-ME
         </p>
         <a
-          href="https://instagram.com"
+          href="https://www.instagram.com/lidymariafotografia/"
           target="_blank"
           rel="noreferrer"
           aria-label="Instagram da Lidy Maria Fotografia"
@@ -533,7 +535,7 @@ function Index() {
 
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <a
-                href="https://wa.me/5561999999999?text=Ol%C3%A1%20Lidy!%20Quero%20agendar%20um%20ensaio%20fotogr%C3%A1fico."
+                href="https://wa.me/5561982120988?text=Ol%C3%A1%20Lidy!%20Quero%20agendar%20um%20ensaio%20fotogr%C3%A1fico."
                 target="_blank"
                 rel="noreferrer"
                 className="flex w-full items-center justify-center gap-2 rounded-lg bg-gold px-8 py-4 text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_-8px_var(--gold)] transition-transform hover:scale-[1.03] sm:w-auto"
@@ -542,7 +544,7 @@ function Index() {
                 Chamar no WhatsApp
               </a>
               <a
-                href="https://instagram.com"
+                href= "https://www.instagram.com/lidymariafotografia/"
                 target="_blank"
                 rel="noreferrer"
                 className="flex w-full items-center justify-center gap-2 rounded-lg border border-border px-8 py-4 text-sm font-medium transition-colors hover:bg-accent sm:w-auto"
@@ -559,7 +561,7 @@ function Index() {
               </span>
               <span className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-gold" />
-                (61) 99999-9999
+                (61) 98212-0988
               </span>
               <span className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-gold" />
