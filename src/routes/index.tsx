@@ -272,11 +272,11 @@ function Sidebar({
 }) {
   return (
     <aside
-      className={`fixed inset-y-0 left-0 z-50 flex w-56 flex-col border-r border-border bg-card px-5 py-6 transition-transform duration-300 lg:translate-x-0 ${
+      className={`fixed inset-y-0 left-0 z-50 flex w-80 flex-col border-r border-border bg-card px-5 py-6 transition-transform duration-300 lg:translate-x-0 ${
         open ? "translate-x-0" : "-translate-x-full"
       }`}
     >
-      <div className="flex items-start justify-between">
+      <div className="flex items-start self-center">
         <div className="flex flex-col items-center gap-3 self-center">
           <div className="relative">
             <img
@@ -288,10 +288,10 @@ function Sidebar({
             />
           </div>
           <div className="text-center">
-            <p className="font-['Great_Vibes'] text-4xl text-[#332418] tracking-wide leading-none flex items-center justify-center gap-1">
+            <p className="font-['Great_Vibes'] text-6xl text-[#332418] tracking-wide leading-none flex items-center justify-center gap-1">
               Lidy Maria
             </p>
-            <p className="mt-1 text-[10px] tracking-[0.35em] text-muted-foreground">
+            <p className="mt-1 text-[16px] tracking-[0.35em] text-muted-foreground">
               FOTOGRAFIA
             </p>
           </div>
@@ -335,7 +335,7 @@ function Sidebar({
       </a>
 
       <div className="mt-auto flex flex-col items-center gap-3 pt-8">
-        <p className="text-[10px] tracking-[0.3em] text-muted-foreground">
+        <p className="text-[14px] tracking-[0.3em] text-muted-foreground">
           SIGA-ME
         </p>
         <a
@@ -347,7 +347,7 @@ function Sidebar({
         >
           <Instagram className="h-4 w-4" />
         </a>
-        <div className="mt-4 text-center text-[10px] leading-relaxed text-muted-foreground">
+        <div className="mt-4 text-center text-[12px] leading-relaxed text-muted-foreground">
           <p>© 2026 Lidy Maria Fotografia</p>
           <p>Todos os direitos reservados.</p>
         </div>
@@ -584,7 +584,7 @@ function Index() {
               <h1 className="mt-4 font-display text-5xl leading-[1.05] font-bold text-balance md:text-6xl">
                 Fotografia Infantil
               </h1>
-              <p className="mt-2 font-script text-5xl text-gold md:text-6xl">
+              <p className="mt-2 font-['Great_Vibes'] text-5xl text-gold md:text-6xl">
                 Brasília
               </p>
               <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
@@ -691,7 +691,7 @@ function Index() {
               </p>
               <h2 className="mt-3 font-display text-4xl font-bold text-balance md:text-5xl">
                 Prazer, sou a{" "}
-                <span className="font-script text-5xl font-normal text-gold md:text-6xl">
+                <span className="font-['Great_Vibes'] text-5xl font-normal text-gold md:text-6xl">
                   Lidy
                 </span>
               </h2>
@@ -736,7 +736,7 @@ function Index() {
               <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
                 Serviços
               </h2>
-              <p className="mt-3 font-script text-3xl text-gold">
+              <p className="mt-3 font-['Great_Vibes'] text-4xl text-gold">
                 para cada fase do seu amor
               </p>
               <div className="leaf-divider" />
@@ -773,7 +773,7 @@ function Index() {
               <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
                 Portfólio
               </h2>
-              <p className="mt-3 font-script text-3xl text-gold">
+              <p className="mt-3 font-['Great_Vibes'] text-4xl text-gold">
                 um pouquinho do meu olhar
               </p>
               <div className="leaf-divider" />
@@ -831,8 +831,8 @@ function Index() {
               <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
                 Depoimentos
               </h2>
-              <p className="mt-3 font-script text-3xl text-gold">
-                histórias em fotos e vídeos
+              <p className="mt-3 font-['Great_Vibes'] text-4xl text-gold">
+                histórias de quem já passou por aqui!
               </p>
               <div className="leaf-divider" />
             </div>
@@ -882,7 +882,7 @@ function Index() {
               <h2 className="mt-3 font-display text-4xl font-bold text-balance md:text-5xl">
                 Agende o seu ensaio
               </h2>
-              <p className="mt-3 font-script text-3xl text-gold">
+              <p className="mt-3 font-['Great_Vibes'] text-4xl text-gold">
                 sua história merece ser lembrada
               </p>
               <p className="mx-auto mt-5 max-w-lg text-sm leading-relaxed text-muted-foreground">
