@@ -35,10 +35,6 @@ import photographer from "@/assets/photographer.jpg";
 import baby1 from "@/assets/baby-1.jpg";
 import baby2 from "@/assets/baby-2.jpg";
 import baby3 from "@/assets/baby-3.jpg";
-import portfolio1 from "@/assets/portfolio-1.jpg";
-import portfolio2 from "@/assets/portfolio-2.jpg";
-import portfolio3 from "@/assets/portfolio-3.jpg";
-import portfolio4 from "@/assets/portfolio-4.jpg";
 import moment1 from "@/assets/moment-1.jpg";
 import moment2 from "@/assets/moment-2.jpg";
 import moment3 from "@/assets/moment-3.jpg";
@@ -66,6 +62,9 @@ import clean2 from "@/assets/ensaioclean/clean2.jpg";
 import clean3 from "@/assets/ensaioclean/clean3.jpg";
 import clean4 from "@/assets/ensaioclean/clean4.jpg";
 import clean5 from "@/assets/ensaioclean/clean5.jpg";
+import acomp1 from "@/assets/acompanhamento/acomp1.jpg";
+import acomp2 from "@/assets/acompanhamento/acomp2.jpg";
+import acomp3 from "@/assets/acompanhamento/acomp3.jpg";
 
 
 
@@ -143,20 +142,6 @@ const portfolio: {
   gallery: GalleryPhoto[];
 }[] = [
   {
-    src: portfolio1,
-    alt: "Recém-nascido dormindo embrulhado em manta de tricô bege",
-    label: "Newborn",
-    description: "Os primeiros dias em fotos delicadas e seguras.",
-    gallery: [
-      { src: portfolio1, alt: "Recém-nascido dormindo embrulhado em manta de tricô bege" },
-      { src: moment1, alt: "Mãe segurando recém-nascido no estúdio" },
-      { src: baby1, alt: "Bebê sorrindo com coroa de flores" },
-      { src: moment5, alt: "Bebê entre flores claras" },
-      { src: baby3, alt: "Bebê de vestido rosa entre flores" },
-      { src: portfolio4, alt: "Cenário creme de estúdio newborn" },
-    ],
-  },
-  {
     src: familia1,
     alt: "Família ao pôr do sol no campo com a filha no colo",
     label: "Família",
@@ -169,32 +154,36 @@ const portfolio: {
     ],
   },
   {
+    src: smash6,
+    alt: "Bebê sorrindo em ensaio smash the cake com balões dourados",
+    label: "Smash the Cake",
+    description: "Bolo, bagunça e muita risada no primeiro ano.",
+    gallery: [
+      { src: smash3, alt: "Bebê mergulhando as mãos no bolo" },
+      { src: smash1, alt: "Bebê com coroa de flores no cenário de festa" },
+    ],
+  },
+  {
     src: smash2,
     alt: "Bebê sorrindo em ensaio smash the cake com balões dourados",
     label: "Smash the Cake",
     description: "Bolo, bagunça e muita risada no primeiro ano.",
     gallery: [
-      { src: smash1, alt: "Bebê sorrindo em ensaio smash the cake com balões dourados" },
       { src: smash2, alt: "Bebê mergulhando as mãos no bolo" },
-      { src: smash3, alt: "Bebê com chantilly no rosto sorrindo" },
       { src: smash4, alt: "Bebê com coroa de flores no cenário de festa" },
       { src: smash5, alt: "Bebê sorrindo em cenário decorado" },
-      { src: smash6, alt: "Bebê de vestido rosa no cenário do bolo" },
       { src: smash7, alt: "Bebê de vestido rosa no cenário do bolo" },
     ],
   },
   {
-    src: portfolio4,
+    src: acomp1,
     alt: "Gestante de vestido longo creme em estúdio",
-    label: "Gestante",
+    label: "Acompanhamento",
     description: "A espera registrada com leveza e elegância.",
     gallery: [
-      { src: portfolio4, alt: "Gestante de vestido longo creme em estúdio" },
-      { src: moment4, alt: "Casal abraçando a barriga da gestante ao pôr do sol" },
-      { src: portfolio2, alt: "Gestante com a família no campo" },
-      { src: moment6, alt: "Casal caminhando de mãos dadas ao pôr do sol" },
-      { src: moment1, alt: "Mãe com o bebê logo após o nascimento" },
-      { src: portfolio1, alt: "Detalhes delicados do enxoval do bebê" },
+      { src: acomp2, alt: "Gestante de vestido longo creme em estúdio" },
+      { src: acomp3, alt: "Casal abraçando a barriga da gestante ao pôr do sol" },
+      { src: acomp1, alt: "Gestante com a família no campo" },
     ],
   },
   {
