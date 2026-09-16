@@ -6,6 +6,8 @@ import {
   Images,
   Film,
   Mail,
+  Rows4,
+  ClipboardPenLine,
   CalendarCheck,
   Instagram,
   Award,
@@ -54,6 +56,18 @@ import smash4 from "@/assets/smashthecake/smash4.jpg";
 import smash5 from "@/assets/smashthecake/smash5.jpg";
 import smash6 from "@/assets/smashthecake/smash6.jpg";
 import smash7 from "@/assets/smashthecake/smash7.jpg";
+import aniversario1 from "@/assets/aniversario/aniversario1.jpg";
+import aniversario2 from "@/assets/aniversario/aniversario2.jpg";
+import aniversario3 from "@/assets/aniversario/aniversario3.jpg";
+import aniversario4 from "@/assets/aniversario/aniversario4.jpg";
+import aniversario5 from "@/assets/aniversario/aniversario5.jpg";
+import clean1 from "@/assets/ensaioclean/clean1.jpg";
+import clean2 from "@/assets/ensaioclean/clean2.jpg";
+import clean3 from "@/assets/ensaioclean/clean3.jpg";
+import clean4 from "@/assets/ensaioclean/clean4.jpg";
+import clean5 from "@/assets/ensaioclean/clean5.jpg";
+
+
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -85,7 +99,7 @@ const navItems = [
   { id: "sobre", label: "Sobre", icon: User },
   { id: "servicos", label: "Serviços", icon: Camera },
   { id: "portfolio", label: "Portfólio", icon: Images },
-  { id: "momentos", label: "Momentos", icon: Film },
+  { id: "depoimentos", label: "Depoimentos", icon: ClipboardPenLine },
   { id: "contato", label: "Contato", icon: Mail },
 ];
 
@@ -146,7 +160,7 @@ const portfolio: {
     src: familia1,
     alt: "Família ao pôr do sol no campo com a filha no colo",
     label: "Família",
-    description: "Ensaios externos cheios de brincadeira e afeto.",
+    description: "Ensaios cheios de brincadeira e afeto.",
     gallery: [
       { src: familia1, alt: "Família ao pôr do sol no campo com a filha no colo" },
       { src: familia2, alt: "Pai erguendo a filha que sorri ao pôr do sol" },
@@ -155,7 +169,7 @@ const portfolio: {
     ],
   },
   {
-    src: smash1,
+    src: smash2,
     alt: "Bebê sorrindo em ensaio smash the cake com balões dourados",
     label: "Smash the Cake",
     description: "Bolo, bagunça e muita risada no primeiro ano.",
@@ -184,31 +198,29 @@ const portfolio: {
     ],
   },
   {
-    src: baby2,
+    src: aniversario2,
     alt: "Bebê com chantilly no rosto sorrindo no ensaio de aniversário",
     label: "Aniversário",
     description: "A festa do seu pequeno contada em imagens.",
     gallery: [
-      { src: baby2, alt: "Bebê com chantilly no rosto sorrindo" },
-      { src: portfolio3, alt: "Bebê entre balões dourados" },
-      { src: moment3, alt: "Bebê mergulhando as mãos no bolo" },
-      { src: baby1, alt: "Bebê sorrindo com coroa de flores" },
-      { src: moment5, alt: "Bebê entre flores claras" },
-      { src: baby3, alt: "Bebê de vestido rosa sentada entre flores" },
+      { src: aniversario2, alt: "Bebê com chantilly no rosto sorrindo" },
+      { src: aniversario1, alt: "Bebê entre balões dourados" },
+      { src: aniversario3, alt: "Bebê mergulhando as mãos no bolo" },
+      { src: aniversario4, alt: "Bebê sorrindo com coroa de flores" },
+      { src: aniversario5, alt: "Bebê entre flores claras" },
     ],
   },
   {
-    src: baby3,
+    src: clean1,
     alt: "Bebê de vestido rosa sentada entre flores",
-    label: "Mêsversário",
+    label: "Ensaio Clean",
     description: "Cada mês uma fase nova para guardar para sempre.",
     gallery: [
-      { src: baby3, alt: "Bebê de vestido rosa sentada entre flores" },
-      { src: moment5, alt: "Bebê sorrindo com coroa de flores" },
-      { src: baby1, alt: "Bebê sorrindo no cenário temático" },
-      { src: moment1, alt: "Bebê no colo da mãe no estúdio" },
-      { src: portfolio1, alt: "Bebê dormindo em manta de tricô" },
-      { src: baby2, alt: "Bebê comemorando com bolinho" },
+      { src: clean2, alt: "Bebê de vestido rosa sentada entre flores" },
+      { src: clean1, alt: "Bebê sorrindo com coroa de flores" },
+      { src: clean3, alt: "Bebê sorrindo no cenário temático" },
+      { src: clean4, alt: "Bebê no colo da mãe no estúdio" },
+      { src: clean5, alt: "Bebê dormindo em manta de tricô" },
     ],
   },
 ];
@@ -796,7 +808,7 @@ function Index() {
                     </span>
                     <span className="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-card/90 px-3 py-1.5 text-[11px] font-semibold text-foreground">
                       <Images className="h-3 w-3 text-gold" />
-                      Ver 6 fotos
+                      Ver fotos
                     </span>
                   </span>
                   <span className="absolute top-3 right-3 rounded-full bg-card/85 px-2.5 py-1 text-[10px] font-medium text-foreground backdrop-blur-sm transition-opacity group-hover:opacity-0">
@@ -811,7 +823,7 @@ function Index() {
 
         {/* MOMENTOS (fotos e vídeos) */}
         <section
-          id="momentos"
+          id="Depoimentos"
           className="scroll-mt-8 bg-secondary/60 px-6 py-24 lg:px-16"
         >
           <div className="mx-auto max-w-6xl">
@@ -820,7 +832,7 @@ function Index() {
                 REGISTROS DO DIA A DIA
               </p>
               <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
-                Momentos
+                Depoimentos
               </h2>
               <p className="mt-3 font-script text-3xl text-gold">
                 histórias em fotos e vídeos
