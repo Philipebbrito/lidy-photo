@@ -4,7 +4,7 @@ import {
   User,
   Camera,
   Images,
-  MessageCircleHeart,
+  Film,
   Mail,
   CalendarCheck,
   Instagram,
@@ -20,8 +20,14 @@ import {
   MapPin,
   Menu,
   X,
+  Play,
+  ChevronLeft,
+  ChevronRight,
+  MessageCircle,
+  ArrowUp,
 } from "lucide-react";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+
 
 import photographer from "@/assets/photographer.jpg";
 import baby1 from "@/assets/baby-1.jpg";
@@ -31,8 +37,23 @@ import portfolio1 from "@/assets/portfolio-1.jpg";
 import portfolio2 from "@/assets/portfolio-2.jpg";
 import portfolio3 from "@/assets/portfolio-3.jpg";
 import portfolio4 from "@/assets/portfolio-4.jpg";
-
-
+import moment1 from "@/assets/moment-1.jpg";
+import moment2 from "@/assets/moment-2.jpg";
+import moment3 from "@/assets/moment-3.jpg";
+import moment4 from "@/assets/moment-4.jpg";
+import moment5 from "@/assets/moment-5.jpg";
+import moment6 from "@/assets/moment-6.jpg";
+import familia1 from "@/assets/familia/familia1.jpg";
+import familia2 from "@/assets/familia/familia2.jpg";
+import familia3 from "@/assets/familia/familia3.jpg";
+import familia4 from "@/assets/familia/familia4.jpg";
+import smash1 from "@/assets/smashthecake/smash1.jpg";
+import smash2 from "@/assets/smashthecake/smash2.jpg";
+import smash3 from "@/assets/smashthecake/smash3.jpg";
+import smash4 from "@/assets/smashthecake/smash4.jpg";
+import smash5 from "@/assets/smashthecake/smash5.jpg";
+import smash6 from "@/assets/smashthecake/smash6.jpg";
+import smash7 from "@/assets/smashthecake/smash7.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -64,7 +85,7 @@ const navItems = [
   { id: "sobre", label: "Sobre", icon: User },
   { id: "servicos", label: "Serviços", icon: Camera },
   { id: "portfolio", label: "Portfólio", icon: Images },
-  { id: "depoimentos", label: "Depoimentos", icon: MessageCircleHeart },
+  { id: "momentos", label: "Momentos", icon: Film },
   { id: "contato", label: "Contato", icon: Mail },
 ];
 
@@ -98,34 +119,145 @@ const services = [
   },
 ];
 
-const portfolio = [
-  { src: portfolio1, alt: "Recém-nascido dormindo embrulhado em manta de tricô bege", label: "Newborn" },
-  { src: portfolio2, alt: "Família ao pôr do sol no campo com a filha no colo", label: "Família" },
-  { src: portfolio3, alt: "Bebê sorrindo em ensaio smash the cake com balões dourados", label: "Smash the Cake" },
-  { src: portfolio4, alt: "Gestante de vestido longo creme em estúdio", label: "Gestante" },
-  { src: baby2, alt: "Bebê com chantilly no rosto sorrindo no ensaio de aniversário", label: "Aniversário" },
-  { src: baby3, alt: "Bebê de vestido rosa sentada entre flores", label: "Mêsversário" },
+type GalleryPhoto = { src: string; alt: string };
+
+const portfolio: {
+  src: string;
+  alt: string;
+  label: string;
+  description: string;
+  gallery: GalleryPhoto[];
+}[] = [
+  {
+    src: portfolio1,
+    alt: "Recém-nascido dormindo embrulhado em manta de tricô bege",
+    label: "Newborn",
+    description: "Os primeiros dias em fotos delicadas e seguras.",
+    gallery: [
+      { src: portfolio1, alt: "Recém-nascido dormindo embrulhado em manta de tricô bege" },
+      { src: moment1, alt: "Mãe segurando recém-nascido no estúdio" },
+      { src: baby1, alt: "Bebê sorrindo com coroa de flores" },
+      { src: moment5, alt: "Bebê entre flores claras" },
+      { src: baby3, alt: "Bebê de vestido rosa entre flores" },
+      { src: portfolio4, alt: "Cenário creme de estúdio newborn" },
+    ],
+  },
+  {
+    src: familia1,
+    alt: "Família ao pôr do sol no campo com a filha no colo",
+    label: "Família",
+    description: "Ensaios externos cheios de brincadeira e afeto.",
+    gallery: [
+      { src: familia1, alt: "Família ao pôr do sol no campo com a filha no colo" },
+      { src: familia2, alt: "Pai erguendo a filha que sorri ao pôr do sol" },
+      { src: familia3, alt: "Família de mãos dadas caminhando ao pôr do sol" },
+      { src: familia4, alt: "Criança sorrindo em ensaio ao ar livre" },
+    ],
+  },
+  {
+    src: smash1,
+    alt: "Bebê sorrindo em ensaio smash the cake com balões dourados",
+    label: "Smash the Cake",
+    description: "Bolo, bagunça e muita risada no primeiro ano.",
+    gallery: [
+      { src: smash1, alt: "Bebê sorrindo em ensaio smash the cake com balões dourados" },
+      { src: smash2, alt: "Bebê mergulhando as mãos no bolo" },
+      { src: smash3, alt: "Bebê com chantilly no rosto sorrindo" },
+      { src: smash4, alt: "Bebê com coroa de flores no cenário de festa" },
+      { src: smash5, alt: "Bebê sorrindo em cenário decorado" },
+      { src: smash6, alt: "Bebê de vestido rosa no cenário do bolo" },
+      { src: smash7, alt: "Bebê de vestido rosa no cenário do bolo" },
+    ],
+  },
+  {
+    src: portfolio4,
+    alt: "Gestante de vestido longo creme em estúdio",
+    label: "Gestante",
+    description: "A espera registrada com leveza e elegância.",
+    gallery: [
+      { src: portfolio4, alt: "Gestante de vestido longo creme em estúdio" },
+      { src: moment4, alt: "Casal abraçando a barriga da gestante ao pôr do sol" },
+      { src: portfolio2, alt: "Gestante com a família no campo" },
+      { src: moment6, alt: "Casal caminhando de mãos dadas ao pôr do sol" },
+      { src: moment1, alt: "Mãe com o bebê logo após o nascimento" },
+      { src: portfolio1, alt: "Detalhes delicados do enxoval do bebê" },
+    ],
+  },
+  {
+    src: baby2,
+    alt: "Bebê com chantilly no rosto sorrindo no ensaio de aniversário",
+    label: "Aniversário",
+    description: "A festa do seu pequeno contada em imagens.",
+    gallery: [
+      { src: baby2, alt: "Bebê com chantilly no rosto sorrindo" },
+      { src: portfolio3, alt: "Bebê entre balões dourados" },
+      { src: moment3, alt: "Bebê mergulhando as mãos no bolo" },
+      { src: baby1, alt: "Bebê sorrindo com coroa de flores" },
+      { src: moment5, alt: "Bebê entre flores claras" },
+      { src: baby3, alt: "Bebê de vestido rosa sentada entre flores" },
+    ],
+  },
+  {
+    src: baby3,
+    alt: "Bebê de vestido rosa sentada entre flores",
+    label: "Mêsversário",
+    description: "Cada mês uma fase nova para guardar para sempre.",
+    gallery: [
+      { src: baby3, alt: "Bebê de vestido rosa sentada entre flores" },
+      { src: moment5, alt: "Bebê sorrindo com coroa de flores" },
+      { src: baby1, alt: "Bebê sorrindo no cenário temático" },
+      { src: moment1, alt: "Bebê no colo da mãe no estúdio" },
+      { src: portfolio1, alt: "Bebê dormindo em manta de tricô" },
+      { src: baby2, alt: "Bebê comemorando com bolinho" },
+    ],
+  },
 ];
 
-const testimonials = [
+
+const moments: { src: string; alt: string; label: string; video?: string }[] = [
   {
-    name: "Mariana S.",
-    role: "Mãe da Alice",
-    text: "A Lidy transformou o ensaio da minha filha em um momento mágico. A paciência e o carinho com os bebês são indescritíveis. Chorei ao ver as fotos!",
+    src: moment1,
+    alt: "Mãe segurando recém-nascido embrulhado em manta bege no estúdio",
+    label: "Newborn",
   },
   {
-    name: "Fernanda & Rafael",
-    role: "Pais do Theo",
-    text: "Do ensaio gestante ao smash the cake, cada etapa foi perfeita. Profissional impecável, estúdio lindo e resultado além do que imaginávamos.",
+    src: moment2,
+    alt: "Pai erguendo filha pequena que sorri ao pôr do sol",
+    label: "Família",
+    // video: "https://exemplo.com/video-familia.mp4",
   },
   {
-    name: "Juliana M.",
-    role: "Mãe do Benício",
-    text: "Fizemos o acompanhamento mensal e foi a melhor decisão. Hoje temos um ano inteiro de memórias lindas. Recomendo de olhos fechados!",
+    src: moment3,
+    alt: "Bebê mergulhando as mãos no bolo do smash the cake",
+    label: "Smash the Cake",
+  },
+  {
+    src: moment4,
+    alt: "Casal abraçando a barriga de gestante no campo ao pôr do sol",
+    label: "Gestante",
+  },
+  {
+    src: moment5,
+    alt: "Bebê sorrindo com coroa de flores entre flores claras",
+    label: "Mêsversário",
+  },
+  {
+    src: moment6,
+    alt: "Família de mãos dadas caminhando ao pôr do sol",
+    label: "Externo",
+    // video: "https://exemplo.com/video-externo.mp4",
   },
 ];
 
-function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
+function Sidebar({
+  open,
+  onClose,
+  active,
+}: {
+  open: boolean;
+  onClose: () => void;
+  active: string;
+}) {
   return (
     <aside
       className={`fixed inset-y-0 left-0 z-50 flex w-56 flex-col border-r border-border bg-card px-5 py-6 transition-transform duration-300 lg:translate-x-0 ${
@@ -147,7 +279,7 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
             </span>
           </div>
           <div className="text-center">
-            <p className="font-script text-2xl leading-none text-foreground">
+            <p className="font-['Great_Vibes'] text-4xl text-[#332418] tracking-wide leading-none flex items-center justify-center gap-1">
               Lidy Maria
             </p>
             <p className="mt-1 text-[10px] tracking-[0.35em] text-muted-foreground">
@@ -165,15 +297,16 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
       </div>
 
       <nav className="mt-8 flex flex-col gap-1">
-        {navItems.map(({ id, label, icon: Icon }, i) => (
+        {navItems.map(({ id, label, icon: Icon }) => (
           <a
             key={id}
             href={`#${id}`}
             onClick={onClose}
-            className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors ${
-              i === 0
-                ? "bg-primary font-medium text-primary-foreground"
-                : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+            aria-current={active === id ? "true" : undefined}
+            className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-300 ${
+              active === id
+                ? "translate-x-1 bg-primary font-medium text-primary-foreground"
+                : "text-muted-foreground hover:translate-x-1 hover:bg-accent hover:text-accent-foreground"
             }`}
           >
             <Icon className="h-4 w-4" />
@@ -181,6 +314,7 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
           </a>
         ))}
       </nav>
+
 
       <a
         href="#contato"
@@ -213,12 +347,201 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
   );
 }
 
+const WHATSAPP_URL =
+  "https://wa.me/5561982120988?text=Ol%C3%A1%20Lidy!%20Quero%20agendar%20um%20ensaio%20fotogr%C3%A1fico.";
+
+type GalleryState = { index: number; photo: number } | null;
+
+function GalleryLightbox({
+  state,
+  onClose,
+  onChange,
+}: {
+  state: NonNullable<GalleryState>;
+  onClose: () => void;
+  onChange: (next: GalleryState) => void;
+}) {
+  const album = portfolio[state.index]!;
+  const total = album.gallery.length;
+
+  const go = useCallback(
+    (step: number) =>
+      onChange({
+        index: state.index,
+        photo: (state.photo + step + total) % total,
+      }),
+    [onChange, state.index, state.photo, total],
+  );
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight") go(1);
+      if (e.key === "ArrowLeft") go(-1);
+    };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [go, onClose]);
+
+  const current = album.gallery[state.photo]!;
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Galeria ${album.label}`}
+      onClick={onClose}
+      className="fixed inset-0 z-[60] flex items-center justify-center bg-foreground/80 p-4 backdrop-blur-sm"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-4xl rounded-3xl bg-card p-4 shadow-2xl sm:p-6"
+      >
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="font-script text-3xl text-gold">{album.label}</p>
+            <p className="text-xs text-muted-foreground">
+              {album.description} · {state.photo + 1} de {total}
+            </p>
+          </div>
+          <button
+            onClick={onClose}
+            aria-label="Fechar galeria"
+            className="rounded-full border border-border p-2 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+
+        <div className="relative mt-4 overflow-hidden rounded-2xl bg-secondary/60">
+          <img
+            key={current.src + state.photo}
+            src={current.src}
+            alt={current.alt}
+            className="mx-auto max-h-[60vh] w-full animate-in fade-in object-contain duration-300"
+          />
+          <button
+            onClick={() => go(-1)}
+            aria-label="Foto anterior"
+            className="absolute top-1/2 left-3 -translate-y-1/2 rounded-full bg-card/90 p-2 text-foreground shadow-md transition-transform hover:scale-110"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            onClick={() => go(1)}
+            aria-label="Próxima foto"
+            className="absolute top-1/2 right-3 -translate-y-1/2 rounded-full bg-card/90 p-2 text-foreground shadow-md transition-transform hover:scale-110"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+
+        <div className="mt-4 grid grid-cols-6 gap-2">
+          {album.gallery.map((photo, i) => (
+            <button
+              key={photo.src + i}
+              onClick={() => onChange({ index: state.index, photo: i })}
+              aria-label={`Ver foto ${i + 1}`}
+              className={`overflow-hidden rounded-lg border-2 transition-all ${
+                i === state.photo
+                  ? "border-gold opacity-100"
+                  : "border-transparent opacity-60 hover:opacity-100"
+              }`}
+            >
+              <img
+                src={photo.src}
+                alt=""
+                className="aspect-square w-full object-cover"
+              />
+            </button>
+          ))}
+        </div>
+
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-5 flex items-center justify-center gap-2 rounded-lg bg-gold px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.02]"
+        >
+          <MessageCircle className="h-4 w-4" />
+          Quero um ensaio {album.label}
+        </a>
+      </div>
+    </div>
+  );
+}
+
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [gallery, setGallery] = useState<GalleryState>(null);
+  const [active, setActive] = useState("inicio");
+  const [showTop, setShowTop] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target.id) setActive(visible.target.id);
+      },
+      { threshold: [0.25, 0.5, 0.75], rootMargin: "-10% 0px -40% 0px" },
+    );
+    navItems.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    const onScroll = () => setShowTop(window.scrollY > 600);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
-      <Sidebar open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <Sidebar
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        active={active}
+      />
+
+      {gallery ? (
+        <GalleryLightbox
+          state={gallery}
+          onClose={() => setGallery(null)}
+          onChange={setGallery}
+        />
+      ) : null}
+
+      {/* botão flutuante do WhatsApp */}
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Falar no WhatsApp"
+        className="fixed right-5 bottom-5 z-40 flex items-center gap-2 rounded-full bg-[#11c258] px-5 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_12px_30px_-8px_var(--gold)] transition-transform hover:scale-105"
+      >
+        <MessageCircle className="h-5 w-5" />
+        <span className="hidden sm:inline">WhatsApp</span>
+      </a>
+
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        aria-label="Voltar ao topo"
+        className={`fixed right-5 bottom-24 z-40 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-md transition-all duration-300 ${
+          showTop ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      >
+        <ArrowUp className="h-4 w-4" />
+      </button>
+
 
       <button
         onClick={() => setMenuOpen(true)}
@@ -276,11 +599,13 @@ function Index() {
 
               <div className="mt-8 flex flex-wrap gap-4">
                 <a
-                  href="#contato"
+                  href="https://wa.me/5561982120988?text=Ol%C3%A1%20Lidy!%20Quero%20agendar%20um%20ensaio%20fotogr%C3%A1fico."
+                  target="_blank"
+                  rel="noreferrer"
                   className="flex items-center gap-2 rounded-lg bg-gold px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_-8px_var(--gold)] transition-transform hover:scale-[1.03]"
                 >
-                  Quero Registrar Minha História
-                  <Camera className="h-4 w-4" />
+                  <Phone className="h-4 w-4" />
+                  Agendar pelo WhatsApp
                 </a>
                 <a
                   href="#portfolio"
@@ -339,7 +664,7 @@ function Index() {
           <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
             <div className="relative order-2 lg:order-1">
               <img
-                src={portfolio2}
+                src={photographer}
                 alt="Família em ensaio externo ao pôr do sol"
                 loading="lazy"
                 width={768}
@@ -446,68 +771,93 @@ function Index() {
             </div>
 
             <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-3">
-              {portfolio.map(({ src, alt, label }) => (
-                <figure
-                  key={label}
-                  className="group relative overflow-hidden rounded-2xl shadow-sm"
+              {portfolio.map((item, index) => (
+                <button
+                  key={item.label}
+                  type="button"
+                  onClick={() => setGallery({ index, photo: 0 })}
+                  aria-label={`Abrir galeria de ${item.label}`}
+                  className="group relative overflow-hidden rounded-2xl text-left shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl focus:ring-2 focus:ring-gold focus:outline-none"
                 >
                   <img
-                    src={src}
-                    alt={alt}
+                    src={item.src}
+                    alt={item.alt}
                     loading="lazy"
                     width={768}
                     height={960}
-                    className="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <figcaption className="absolute inset-0 flex items-end bg-gradient-to-t from-foreground/60 via-transparent to-transparent p-4 opacity-0 transition-opacity group-hover:opacity-100">
+                  <span className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-foreground/75 via-foreground/10 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <span className="font-script text-2xl text-card">
-                      {label}
+                      {item.label}
                     </span>
-                  </figcaption>
-                </figure>
+                    <span className="mt-1 text-[11px] text-card/80">
+                      {item.description}
+                    </span>
+                    <span className="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-card/90 px-3 py-1.5 text-[11px] font-semibold text-foreground">
+                      <Images className="h-3 w-3 text-gold" />
+                      Ver 6 fotos
+                    </span>
+                  </span>
+                  <span className="absolute top-3 right-3 rounded-full bg-card/85 px-2.5 py-1 text-[10px] font-medium text-foreground backdrop-blur-sm transition-opacity group-hover:opacity-0">
+                    {item.label}
+                  </span>
+                </button>
               ))}
             </div>
+
           </div>
         </section>
 
-        {/* DEPOIMENTOS */}
+        {/* MOMENTOS (fotos e vídeos) */}
         <section
-          id="depoimentos"
+          id="momentos"
           className="scroll-mt-8 bg-secondary/60 px-6 py-24 lg:px-16"
         >
           <div className="mx-auto max-w-6xl">
             <div className="text-center">
               <p className="text-xs font-medium tracking-[0.35em] text-gold">
-                PALAVRA DE MÃE
+                REGISTROS DO DIA A DIA
               </p>
               <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
-                Depoimentos
+                Momentos
               </h2>
               <p className="mt-3 font-script text-3xl text-gold">
-                famílias que viraram amigas
+                histórias em fotos e vídeos
               </p>
               <div className="leaf-divider" />
             </div>
 
-            <div className="mt-14 grid gap-6 md:grid-cols-3">
-              {testimonials.map(({ name, role, text }) => (
-                <blockquote
-                  key={name}
-                  className="flex flex-col rounded-2xl border border-border bg-card p-6 shadow-sm"
+            <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-3">
+              {moments.map(({ src, alt, label, video }) => (
+                <figure
+                  key={label}
+                  className="group relative overflow-hidden rounded-2xl shadow-sm"
                 >
-                  <div className="flex gap-1 text-gold">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-current" />
-                    ))}
-                  </div>
-                  <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground italic">
-                    “{text}”
-                  </p>
-                  <footer className="mt-5 border-t border-border pt-4">
-                    <p className="font-display font-semibold">{name}</p>
-                    <p className="text-xs text-muted-foreground">{role}</p>
-                  </footer>
-                </blockquote>
+                  {video ? (
+                    <video
+                      src={video}
+                      poster={src}
+                      controls
+                      playsInline
+                      preload="none"
+                      className="aspect-[4/5] w-full object-cover"
+                    />
+                  ) : (
+                    <img
+                      src={src}
+                      alt={alt}
+                      loading="lazy"
+                      width={768}
+                      height={960}
+                      className="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  )}
+                  <figcaption className="absolute bottom-3 left-3 flex items-center gap-2 rounded-full bg-card/85 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm backdrop-blur-sm">
+                    {video ? <Play className="h-3 w-3 text-gold" /> : null}
+                    {label}
+                  </figcaption>
+                </figure>
               ))}
             </div>
           </div>
@@ -544,7 +894,7 @@ function Index() {
                 Chamar no WhatsApp
               </a>
               <a
-                href= "https://www.instagram.com/lidymariafotografia/"
+                href="https://www.instagram.com/lidymariafotografia/"
                 target="_blank"
                 rel="noreferrer"
                 className="flex w-full items-center justify-center gap-2 rounded-lg border border-border px-8 py-4 text-sm font-medium transition-colors hover:bg-accent sm:w-auto"
