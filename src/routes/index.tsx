@@ -31,7 +31,11 @@ import {
 import { useCallback, useEffect, useState } from "react";
 
 
+import videodepo from "@/assets/videodepo.mp4"
+import depo1 from "@/assets/depo1.jpg"
+import depo2 from "@/assets/depo2.jpg"
 import photographer from "@/assets/photographer.jpg";
+import capa from "@/assets/CAPA.jpg";
 import baby1 from "@/assets/baby-1.jpg";
 import baby2 from "@/assets/baby-2.jpg";
 import baby3 from "@/assets/baby-3.jpg";
@@ -76,7 +80,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Ensaios fotográficos de newborn, bebês, smash the cake e família em Brasília. Uma experiência leve e acolhedora para eternizar a história da sua família.",
+          "Ensaios fotográficos de bebês, smash the cake e família em Brasília. Uma experiência leve e acolhedora para eternizar a história da sua família.",
       },
       {
         property: "og:title",
@@ -85,7 +89,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Ensaios de newborn, bebês, smash the cake e família em Brasília. Eternize as conexões verdadeiras da sua família.",
+          "Ensaios de bebês, smash the cake e família em Brasília. Eternize as conexões verdadeiras da sua família.",
       },
       { property: "og:url", content: "/" },
     ],
@@ -105,32 +109,29 @@ const navItems = [
 const badges = [
   { icon: Award, title: "11+ Anos", sub: "Especialista Infantil" },
   { icon: Heart, title: "+2K Famílias", sub: "Histórias Felizes" },
-  { icon: Camera, title: "Ensaios Únicos", sub: "Newborn & Família" },
+  { icon: Camera, title: "Ensaios Únicos", sub: "Smash the Cake & Família" },
   { icon: Star, title: "Nota 5.0 ★", sub: "Amor & Cuidado" },
 ];
 
 const services = [
-  {
-    icon: Baby,
-    title: "Newborn",
-    text: "Os primeiros dias do seu bebê registrados com toda a delicadeza e segurança que esse momento pede.",
-  },
-  {
-    icon: Heart,
-    title: "Acompanhamento Mensal",
-    text: "Cada mês uma fase nova. Acompanhe o crescimento do seu bebê do 1º ao 12º mês em ensaios temáticos.",
-  },
   {
     icon: Cake,
     title: "Smash the Cake",
     text: "A festa do primeiro ano com direito a bolo, bagunça e sorrisos que ficam para sempre na memória.",
   },
   {
+    icon: Heart,
+    title: "Acompanhamento Mensal",
+    text: "Cada mês uma fase nova. Acompanhe o crescimento do seu bebê do 1º ao 12º mês em ensaios temáticos.",
+  },
+  
+  {
     icon: Users,
     title: "Família & Gestante",
     text: "A espera e o encontro. Ensaios que celebram o amor que cresce dentro e fora da barriga.",
   },
 ];
+
 
 type GalleryPhoto = { src: string; alt: string };
 
@@ -141,18 +142,6 @@ const portfolio: {
   description: string;
   gallery: GalleryPhoto[];
 }[] = [
-  {
-    src: familia1,
-    alt: "Família ao pôr do sol no campo com a filha no colo",
-    label: "Família",
-    description: "Ensaios cheios de brincadeira e afeto.",
-    gallery: [
-      { src: familia1, alt: "Família ao pôr do sol no campo com a filha no colo" },
-      { src: familia2, alt: "Pai erguendo a filha que sorri ao pôr do sol" },
-      { src: familia3, alt: "Família de mãos dadas caminhando ao pôr do sol" },
-      { src: familia4, alt: "Criança sorrindo em ensaio ao ar livre" },
-    ],
-  },
   {
     src: smash6,
     alt: "Bebê sorrindo em ensaio smash the cake com balões dourados",
@@ -200,6 +189,18 @@ const portfolio: {
     ],
   },
   {
+    src: familia1,
+    alt: "Família ao pôr do sol no campo com a filha no colo",
+    label: "Família",
+    description: "Ensaios cheios de brincadeira e afeto.",
+    gallery: [
+      { src: familia1, alt: "Família ao pôr do sol no campo com a filha no colo" },
+      { src: familia2, alt: "Pai erguendo a filha que sorri ao pôr do sol" },
+      { src: familia3, alt: "Família de mãos dadas caminhando ao pôr do sol" },
+      { src: familia4, alt: "Criança sorrindo em ensaio ao ar livre" },
+    ],
+  },
+  {
     src: clean1,
     alt: "Bebê de vestido rosa sentada entre flores",
     label: "Ensaio Clean",
@@ -217,36 +218,20 @@ const portfolio: {
 
 const moments: { src: string; alt: string; label: string; video?: string }[] = [
   {
-    src: moment1,
+    src: depo1,
     alt: "Mãe segurando recém-nascido embrulhado em manta bege no estúdio",
-    label: "Newborn",
+    label: "",
   },
   {
     src: moment2,
     alt: "Pai erguendo filha pequena que sorri ao pôr do sol",
-    label: "Família",
-    // video: "https://exemplo.com/video-familia.mp4",
+    label: "",
+    video: videodepo,
   },
   {
-    src: moment3,
+    src: depo2,
     alt: "Bebê mergulhando as mãos no bolo do smash the cake",
-    label: "Smash the Cake",
-  },
-  {
-    src: moment4,
-    alt: "Casal abraçando a barriga de gestante no campo ao pôr do sol",
-    label: "Gestante",
-  },
-  {
-    src: moment5,
-    alt: "Bebê sorrindo com coroa de flores entre flores claras",
-    label: "Mêsversário",
-  },
-  {
-    src: moment6,
-    alt: "Família de mãos dadas caminhando ao pôr do sol",
-    label: "Externo",
-    // video: "https://exemplo.com/video-externo.mp4",
+    label: "",
   },
 ];
 
@@ -295,23 +280,36 @@ function Sidebar({
       </div>
 
       <nav className="mt-8 flex flex-col gap-1">
-        {navItems.map(({ id, label, icon: Icon }) => (
-          <a
-            key={id}
-            href={`#${id}`}
-            onClick={onClose}
-            aria-current={active === id ? "true" : undefined}
-            className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-300 ${
-              active === id
-                ? "translate-x-1 bg-primary font-medium text-primary-foreground"
-                : "text-muted-foreground hover:translate-x-1 hover:bg-accent hover:text-accent-foreground"
-            }`}
-          >
-            <Icon className="h-4 w-4" />
-            {label}
-          </a>
-        ))}
-      </nav>
+  {navItems.map(({ id, label, icon: Icon }) => {
+    // Normaliza ambos os lados para minúsculas antes de comparar
+    const isActive = active?.toLowerCase() === id?.toLowerCase();
+
+    return (
+      <a
+        key={id}
+        href={`#${id.toLowerCase()}`}
+        onClick={(e) => {
+          // Garante a rolagem e atualização do link mesmo se o ID tiver variações de caixa
+          const targetElement = document.getElementById(id) || document.getElementById(id.toLowerCase());
+          if (targetElement) {
+            e.preventDefault();
+            targetElement.scrollIntoView({ behavior: "smooth" });
+          }
+          onClose();
+        }}
+        aria-current={isActive ? "true" : undefined}
+        className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-300 ${
+          isActive
+            ? "translate-x-1 bg-primary font-medium text-primary-foreground shadow-sm"
+            : "text-muted-foreground hover:translate-x-1 hover:bg-accent hover:text-accent-foreground"
+        }`}
+      >
+        <Icon className="h-4 w-4" />
+        {label}
+      </a>
+    );
+  })}
+</nav>
 
 
       <a
@@ -621,7 +619,7 @@ function Index() {
                 className="absolute inset-6 rounded-[45%_55%_50%_50%/55%_45%_55%_45%] bg-secondary"
               />
               <img
-                src={photographer}
+                src={capa}
                 alt="Lidy Maria sorrindo e segurando sua câmera profissional"
                 className="relative mx-auto aspect-[4/5] w-full max-w-sm rounded-[45%_55%_50%_50%/55%_45%_55%_45%] object-cover object-top shadow-2xl"
                 width={1024}
@@ -686,8 +684,7 @@ function Index() {
               </h2>
               <p className="mt-6 leading-relaxed text-muted-foreground">
                 Há mais de uma década eu transformo momentos em memórias
-                afetivas. Sou especialista em fotografia infantil e newborn em
-                Brasília, e acredito que cada família carrega uma história
+                afetivas. Sou fotógrafa infantil especialista em Smash The Cake e Ensaio Família em Brasília, e acredito que cada família carrega uma história
                 única que merece ser contada com sensibilidade.
               </p>
               <p className="mt-4 leading-relaxed text-muted-foreground">
@@ -698,9 +695,9 @@ function Index() {
               </p>
               <ul className="mt-6 space-y-3">
                 {[
-                  "Especialista em newborn com certificação em segurança",
-                  "Cenários e figurinos exclusivos incluídos",
-                  "Atendimento em estúdio ou externo em Brasília/DF",
+                  "Especialista em Smash The Cake",
+                  "Proporcionamos uma experiência completa: Cenários exclusivos, Bolo, figurino, participação dos pais e irmãos",
+                  "Atendimento em estúdio em Taguatinga - Brasília DF",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm">
                     <Flower2 className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
@@ -809,7 +806,7 @@ function Index() {
 
         {/* MOMENTOS (fotos e vídeos) */}
         <section
-          id="Depoimentos"
+          id="depoimentos"
           className="scroll-mt-8 bg-secondary/60 px-6 py-24 lg:px-16"
         >
           <div className="mx-auto max-w-6xl">
