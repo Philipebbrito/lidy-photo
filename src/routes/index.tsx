@@ -282,13 +282,10 @@ function Sidebar({
             <img
               src={photographer}
               alt="Lidy Maria, fotógrafa especialista em fotografia infantil"
-              className="h-20 w-20 rounded-full border-2 border-gold object-cover"
-              width={80}
-              height={80}
+              className="h-35 w-35 rounded-full border-4 border-gold object-cover"
+              width={100}
+              height={100}
             />
-            <span className="absolute -right-0.5 -bottom-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-gold text-[10px] text-primary-foreground">
-              ✓
-            </span>
           </div>
           <div className="text-center">
             <p className="font-['Great_Vibes'] text-4xl text-[#332418] tracking-wide leading-none flex items-center justify-center gap-1">
