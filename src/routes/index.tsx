@@ -71,6 +71,7 @@ import acomp3 from "@/assets/acompanhamento/acomp3.jpg";
 
 
 
+
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
@@ -286,7 +287,7 @@ function Sidebar({
             />
           </div>
           <div className="text-center">
-            <p className="font-['Great_Vibes'] text-6xl text-[#332418] tracking-wide leading-none flex items-center justify-center gap-1">
+            <p className="font-script text-6xl text-[#332418] tracking-wide leading-none flex items-center justify-center gap-1">
               Lidy Maria
             </p>
             <p className="mt-1 text-[16px] tracking-[0.35em] text-muted-foreground">
@@ -588,13 +589,13 @@ function Index() {
 
           <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2">
             <div>
-              <p className="mt-4 font-['Great_Vibes'] text-7xl text-[#332418] tracking-wide leading-none flex items-center justify-start gap-1">
+              <p className="mt-4 font-script text-7xl text-[#332418] tracking-wide leading-none flex items-center justify-start gap-1">
               Lidy Maria
             </p>
               <h1 className="mt-4 font-display text-5xl leading-[0.95] font-bold text-balance md:text-6xl">
                 Fotografia Infantil
               </h1>
-              <p className="mt-2 font-['Great_Vibes'] text-5xl text-gold md:text-6xl">
+              <p className="mt-2 font-script text-5xl text-gold md:text-6xl">
                 Brasília
               </p>
               <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
@@ -701,7 +702,7 @@ function Index() {
               </p>
               <h2 className="mt-3 font-display text-4xl font-bold text-balance md:text-5xl">
                 Prazer, sou a{" "}
-                <span className="font-['Great_Vibes'] text-5xl font-normal text-gold md:text-6xl">
+                <span className="font-script text-5xl font-normal text-gold md:text-6xl">
                   Lidy
                 </span>
               </h2>
@@ -745,7 +746,7 @@ function Index() {
               <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
                 Uma Experiência
               </h2>
-              <p className="mt-3 font-['Great_Vibes'] text-4xl text-gold">
+              <p className="mt-3 font-script text-4xl text-gold">
                 para cada fase da sua história
               </p>
               <div className="leaf-divider" />
@@ -770,7 +771,7 @@ function Index() {
                 
               ))}
             </div>
-            <p className="mt-20 text-center font-['Great_Vibes'] text-4xl text-gold">
+            <p className="mt-20 text-center font-script text-4xl text-gold">
               mais do que fotografias, memórias construídas com cuidado, sensibilidade e propósito
             </p>
           </div>
@@ -787,7 +788,7 @@ function Index() {
               <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
                 Portfólio
               </h2>
-              <p className="mt-3 font-['Great_Vibes'] text-4xl text-gold">
+              <p className="mt-3 font-script text-4xl text-gold">
                 um pouquinho do meu olhar
               </p>
               <div className="leaf-divider" />
@@ -845,7 +846,7 @@ function Index() {
               <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
                 Depoimentos
               </h2>
-              <p className="mt-3 font-['Great_Vibes'] text-4xl text-gold">
+              <p className="mt-3 font-script text-4xl text-gold">
                 histórias de quem já passou por aqui!
               </p>
               <div className="leaf-divider" />
@@ -896,7 +897,7 @@ function Index() {
               <h2 className="mt-3 font-display text-4xl font-bold text-balance md:text-5xl">
                 Agende o seu ensaio
               </h2>
-              <p className="mt-3 font-['Great_Vibes'] text-4xl text-gold">
+              <p className="mt-3 font-script text-4xl text-gold">
                 sua história merece ser lembrada
               </p>
               <p className="mx-auto mt-5 max-w-lg text-sm leading-relaxed text-muted-foreground">
