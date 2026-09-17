@@ -5,6 +5,7 @@ import {
   Camera,
   Images,
   Film,
+  CakeSlice,
   Mail,
   Rows4,
   ClipboardPenLine,
@@ -32,19 +33,17 @@ import { useCallback, useEffect, useState } from "react";
 
 
 import videodepo from "@/assets/videodepo.mp4"
+import play from "@/assets/play.jpg"
 import depo1 from "@/assets/depo1.jpg"
 import depo2 from "@/assets/depo2.jpg"
+import depo4 from "@/assets/depo4.jpg"
+import depo5 from "@/assets/depo5.jpg"
+import depo6 from "@/assets/depo6.jpg"
 import photographer from "@/assets/photographer.jpg";
 import capa from "@/assets/CAPA.jpg";
 import baby1 from "@/assets/baby-1.jpg";
 import baby2 from "@/assets/baby-2.jpg";
 import baby3 from "@/assets/baby-3.jpg";
-import moment1 from "@/assets/moment-1.jpg";
-import moment2 from "@/assets/moment-2.jpg";
-import moment3 from "@/assets/moment-3.jpg";
-import moment4 from "@/assets/moment-4.jpg";
-import moment5 from "@/assets/moment-5.jpg";
-import moment6 from "@/assets/moment-6.jpg";
 import familia1 from "@/assets/familia/familia1.jpg";
 import familia2 from "@/assets/familia/familia2.jpg";
 import familia3 from "@/assets/familia/familia3.jpg";
@@ -115,20 +114,30 @@ const badges = [
 
 const services = [
   {
-    icon: Cake,
+    icon: CakeSlice,
     title: "Smash the Cake",
-    text: "A festa do primeiro ano com direito a bolo, bagunça e sorrisos que ficam para sempre na memória.",
+    text: "Uma experiência completa para celebrar o primeiro aniversário do seu bebê, com cenário exclusivo, momentos em família e memórias cheias de afeto.",
   },
   {
     icon: Heart,
-    title: "Acompanhamento Mensal",
-    text: "Cada mês uma fase nova. Acompanhe o crescimento do seu bebê do 1º ao 12º mês em ensaios temáticos.",
+    title: "Acompanhamento do Bebê",
+    text: "Cada fase merece ser lembrada. Ensaios pensados para acompanhar o crescimento do seu bebê e registrar, com delicadeza, cada nova descoberta.",
   },
   
   {
+    icon: Camera,
+    title: "Ensaio Clean",
+    text: "Uma proposta leve, atemporal e delicada, em que olhares, expressões e conexões se tornam os elementos mais importantes de cada registro.",
+  },
+  {
+    icon: Cake,
+    title: "Ensaio de Aniversário",
+    text: "Uma experiência especial para celebrar mais um capítulo da infância, com um cenário exclusivo e cheio de personalidade para contar essa história.",
+  },
+  {
     icon: Users,
-    title: "Família & Gestante",
-    text: "A espera e o encontro. Ensaios que celebram o amor que cresce dentro e fora da barriga.",
+    title: "Ensaio em Família",
+    text: "Uma experiência para desacelerar, estar presente e transformar o amor, a cumplicidade e a conexão da sua família em memórias para sempre.",
   },
 ];
 
@@ -218,18 +227,33 @@ const portfolio: {
 
 const moments: { src: string; alt: string; label: string; video?: string }[] = [
   {
-    src: depo1,
-    alt: "Mãe segurando recém-nascido embrulhado em manta bege no estúdio",
-    label: "",
-  },
-  {
-    src: moment2,
+    src: play,
     alt: "Pai erguendo filha pequena que sorri ao pôr do sol",
     label: "",
     video: videodepo,
   },
   {
+    src: depo1,
+    alt: "Mãe segurando recém-nascido embrulhado em manta bege no estúdio",
+    label: "",
+  },  
+  {
     src: depo2,
+    alt: "Bebê mergulhando as mãos no bolo do smash the cake",
+    label: "",
+  },
+  {
+    src: depo4,
+    alt: "Bebê mergulhando as mãos no bolo do smash the cake",
+    label: "",
+  },
+  {
+    src: depo5,
+    alt: "Bebê mergulhando as mãos no bolo do smash the cake",
+    label: "",
+  },
+  {
+    src: depo6,
     alt: "Bebê mergulhando as mãos no bolo do smash the cake",
     label: "",
   },
@@ -343,8 +367,7 @@ function Sidebar({
   );
 }
 
-const WHATSAPP_URL =
-  "https://wa.me/5561982120988?text=Ol%C3%A1%20Lidy!%20Quero%20agendar%20um%20ensaio%20fotogr%C3%A1fico.";
+const WHATSAPP_URL = "https://wa.me/5561982120988?text=Ol%C3%A1%20Lidy!%20Quero%20agendar%20um%20ensaio%20fotogr%C3%A1fico.";
 
 type GalleryState = { index: number; photo: number } | null;
 
@@ -565,10 +588,10 @@ function Index() {
 
           <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2">
             <div>
-              <p className="text-xs font-medium tracking-[0.35em] text-muted-foreground">
-                MEMÓRIA AFETIVA <span className="text-gold">♥</span>
-              </p>
-              <h1 className="mt-4 font-display text-5xl leading-[1.05] font-bold text-balance md:text-6xl">
+              <p className="mt-4 font-['Great_Vibes'] text-7xl text-[#332418] tracking-wide leading-none flex items-center justify-start gap-1">
+              Lidy Maria
+            </p>
+              <h1 className="mt-4 font-display text-5xl leading-[0.95] font-bold text-balance md:text-6xl">
                 Fotografia Infantil
               </h1>
               <p className="mt-2 font-['Great_Vibes'] text-5xl text-gold md:text-6xl">
@@ -584,7 +607,7 @@ function Index() {
                 {badges.map(({ icon: Icon, title, sub }) => (
                   <div
                     key={title}
-                    className="flex flex-col items-center gap-1 rounded-xl border border-border bg-card/80 px-2 py-3 text-center shadow-sm"
+                    className="flex flex-col items-center gap-1 rounded-xl border border-border bg-card/80 px-2 py-3 text-center shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:border-primary/50 hover:bg-card hover:shadow-md active:scale-95 cursor-pointer"
                   >
                     <Icon className="h-4 w-4 text-gold" />
                     <p className="text-xs font-semibold">{title}</p>
@@ -621,13 +644,13 @@ function Index() {
               <img
                 src={capa}
                 alt="Lidy Maria sorrindo e segurando sua câmera profissional"
-                className="relative mx-auto aspect-[4/5] w-full max-w-sm rounded-[45%_55%_50%_50%/55%_45%_55%_45%] object-cover object-top shadow-2xl"
+                className="relative mx-auto aspect-[4/5] w-full max-w-sm rounded-[45%_55%_50%_50%/55%_45%_55%_45%] object-cover object-top shadow-2xl transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2 hover:rotate-1 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.35)] active:scale-95 cursor-pointer"
                 width={1024}
                 height={1280}
               />
               {/* baby photos strip */}
               <div className="absolute top-4 -right-2 hidden w-36 flex-col gap-3 md:flex lg:-right-6 lg:w-44">
-                {[baby1, baby2, baby3].map((src, i) => (
+                {[baby1, clean2, baby3].map((src, i) => (
                   <img
                     key={i}
                     src={src}
@@ -639,7 +662,7 @@ function Index() {
                     loading="lazy"
                     width={1024}
                     height={768}
-                    className="aspect-[4/3] w-full rounded-2xl border-4 border-card object-cover shadow-lg"
+                    className="aspect-[4/3] w-full rounded-2xl border-4 border-card object-cover shadow-lg transition-all duration-300 ease-out hover:z-10 hover:scale-105 hover:-translate-y-1 hover:rotate-0 hover:shadow-2xl active:scale-95 cursor-pointer"
                   />
                 ))}
               </div>
@@ -667,7 +690,7 @@ function Index() {
                 height={960}
                 className="w-full rounded-3xl object-cover shadow-xl"
               />
-              <div className="absolute -bottom-6 -right-4 rounded-2xl bg-gold px-6 py-4 text-primary-foreground shadow-lg lg:-right-8">
+              <div className="absolute -bottom-6 -right-4 rounded-2xl bg-gold px-6 py-4 text-primary-foreground shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:brightness-110 active:scale-95 cursor-pointer select-none lg:-right-8">
                 <p className="font-display text-3xl font-bold">11+</p>
                 <p className="text-xs">anos de história</p>
               </div>
@@ -717,13 +740,13 @@ function Index() {
           <div className="mx-auto max-w-6xl">
             <div className="text-center">
               <p className="text-xs font-medium tracking-[0.35em] text-gold">
-                O QUE EU FAÇO
+                O QUE OFERECEMOS?
               </p>
               <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
-                Serviços
+                Uma Experiência
               </h2>
               <p className="mt-3 font-['Great_Vibes'] text-4xl text-gold">
-                para cada fase do seu amor
+                para cada fase da sua história
               </p>
               <div className="leaf-divider" />
             </div>
@@ -744,9 +767,14 @@ function Index() {
                     {text}
                   </p>
                 </div>
+                
               ))}
             </div>
+            <p className="mt-20 text-center font-['Great_Vibes'] text-4xl text-gold">
+              mais do que fotografias, memórias construídas com cuidado, sensibilidade e propósito
+            </p>
           </div>
+          
         </section>
 
         {/* PORTFÓLIO */}
@@ -848,7 +876,7 @@ function Index() {
                       className="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   )}
-                  <figcaption className="absolute bottom-3 left-3 flex items-center gap-2 rounded-full bg-card/85 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm backdrop-blur-sm">
+                  <figcaption className="absolute bottom-3 left-3 flex items-center gap-2 rounded-full bg-transparent px-3 py-1.5 text-xs font-medium text-foreground">
                     {video ? <Play className="h-3 w-3 text-gold" /> : null}
                     {label}
                   </figcaption>
