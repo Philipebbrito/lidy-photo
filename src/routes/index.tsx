@@ -107,7 +107,7 @@ const navItems = [
 ];
 
 const badges = [
-  { icon: Award, title: "11+ Anos", sub: "Especialista Infantil" },
+  { icon: Award, title: "11+ Anos", sub: "Especialista em Ensaio Infantil" },
   { icon: Heart, title: "+2K Famílias", sub: "Histórias Felizes" },
   { icon: Camera, title: "Ensaios Únicos", sub: "Smash the Cake & Família" },
   { icon: Star, title: "Nota 5.0 ★", sub: "Amor & Cuidado" },
@@ -143,120 +143,102 @@ const services = [
 ];
 
 
-type GalleryPhoto = { src: string; alt: string };
+type GalleryPhoto = { src: string };
 
 const portfolio: {
   src: string;
-  alt: string;
   label: string;
   description: string;
   gallery: GalleryPhoto[];
 }[] = [
   {
     src: smash6,
-    alt: "Bebê sorrindo em ensaio smash the cake com balões dourados",
     label: "Smash the Cake",
     description: "Bolo, bagunça e muita risada no primeiro ano.",
     gallery: [
-      { src: smash3, alt: "Bebê mergulhando as mãos no bolo" },
-      { src: smash1, alt: "Bebê com coroa de flores no cenário de festa" },
+      { src: smash6 },
+      { src: smash3 },
+      { src: smash1 },
     ],
   },
   {
     src: smash2,
-    alt: "Bebê sorrindo em ensaio smash the cake com balões dourados",
     label: "Smash the Cake",
     description: "Bolo, bagunça e muita risada no primeiro ano.",
     gallery: [
-      { src: smash2, alt: "Bebê mergulhando as mãos no bolo" },
-      { src: smash4, alt: "Bebê com coroa de flores no cenário de festa" },
-      { src: smash5, alt: "Bebê sorrindo em cenário decorado" },
-      { src: smash7, alt: "Bebê de vestido rosa no cenário do bolo" },
+      { src: smash2 },
+      { src: smash4 },
+      { src: smash5 },
+      { src: smash7 },
     ],
   },
   {
     src: acomp1,
-    alt: "Gestante de vestido longo creme em estúdio",
     label: "Acompanhamento",
-    description: "A espera registrada com leveza e elegância.",
+    description: "Cada mês uma fase nova para guardar para sempre.",
     gallery: [
-      { src: acomp2, alt: "Gestante de vestido longo creme em estúdio" },
-      { src: acomp3, alt: "Casal abraçando a barriga da gestante ao pôr do sol" },
-      { src: acomp1, alt: "Gestante com a família no campo" },
+      { src: acomp1 },
+      { src: acomp2 },
+      { src: acomp3 },
     ],
   },
   {
     src: aniversario2,
-    alt: "Bebê com chantilly no rosto sorrindo no ensaio de aniversário",
     label: "Aniversário",
     description: "A festa do seu pequeno contada em imagens.",
     gallery: [
-      { src: aniversario2, alt: "Bebê com chantilly no rosto sorrindo" },
-      { src: aniversario1, alt: "Bebê entre balões dourados" },
-      { src: aniversario3, alt: "Bebê mergulhando as mãos no bolo" },
-      { src: aniversario4, alt: "Bebê sorrindo com coroa de flores" },
-      { src: aniversario5, alt: "Bebê entre flores claras" },
+      { src: aniversario2 },
+      { src: aniversario1 },
+      { src: aniversario3 },
+      { src: aniversario4 },
+      { src: aniversario5 },
     ],
   },
   {
-    src: familia1,
-    alt: "Família ao pôr do sol no campo com a filha no colo",
+    src: familia2,
     label: "Família",
     description: "Ensaios cheios de brincadeira e afeto.",
     gallery: [
-      { src: familia1, alt: "Família ao pôr do sol no campo com a filha no colo" },
-      { src: familia2, alt: "Pai erguendo a filha que sorri ao pôr do sol" },
-      { src: familia3, alt: "Família de mãos dadas caminhando ao pôr do sol" },
-      { src: familia4, alt: "Criança sorrindo em ensaio ao ar livre" },
+      { src: familia2 },
+      { src: familia1 },
+      { src: familia3 },
+      { src: familia4 },
     ],
   },
   {
     src: clean1,
-    alt: "Bebê de vestido rosa sentada entre flores",
     label: "Ensaio Clean",
-    description: "Cada mês uma fase nova para guardar para sempre.",
+    description: "Pureza, leveza e a beleza das pequenas grandes fases.",
     gallery: [
-      { src: clean2, alt: "Bebê de vestido rosa sentada entre flores" },
-      { src: clean1, alt: "Bebê sorrindo com coroa de flores" },
-      { src: clean3, alt: "Bebê sorrindo no cenário temático" },
-      { src: clean4, alt: "Bebê no colo da mãe no estúdio" },
-      { src: clean5, alt: "Bebê dormindo em manta de tricô" },
+      { src: clean1 },
+      { src: clean2 },
+      { src: clean3 },
+      { src: clean4 },
+      { src: clean5 },
     ],
   },
 ];
 
 
-const moments: { src: string; alt: string; label: string; video?: string }[] = [
+const moments: { src: string; video?: string }[] = [
   {
     src: play,
-    alt: "Pai erguendo filha pequena que sorri ao pôr do sol",
-    label: "",
     video: videodepo,
   },
   {
     src: depo1,
-    alt: "Mãe segurando recém-nascido embrulhado em manta bege no estúdio",
-    label: "",
   },  
   {
     src: depo2,
-    alt: "Bebê mergulhando as mãos no bolo do smash the cake",
-    label: "",
   },
   {
     src: depo4,
-    alt: "Bebê mergulhando as mãos no bolo do smash the cake",
-    label: "",
   },
   {
     src: depo5,
-    alt: "Bebê mergulhando as mãos no bolo do smash the cake",
-    label: "",
   },
   {
     src: depo6,
-    alt: "Bebê mergulhando as mãos no bolo do smash the cake",
-    label: "",
   },
 ];
 
@@ -441,7 +423,6 @@ function GalleryLightbox({
           <img
             key={current.src + state.photo}
             src={current.src}
-            alt={current.alt}
             className="mx-auto max-h-[60vh] w-full animate-in fade-in object-contain duration-300"
           />
           <button
@@ -591,11 +572,11 @@ function Index() {
             <div>
               <p className="mt-4 font-script text-7xl text-[#332418] tracking-wide leading-none flex items-center justify-start gap-1">
               Lidy Maria
-            </p>
-              <h1 className="mt-4 font-display text-5xl leading-[0.95] font-bold text-balance md:text-6xl">
+              </p>
+              <h1 className="mt-4 font-display text-5xl leading-[0.80] font-bold text-balance md:text-6xl">
                 Fotografia Infantil
               </h1>
-              <p className="mt-2 font-script text-5xl text-gold md:text-6xl">
+              <p className="mt-4 translate-y-2 font-script text-5xl text-gold md:text-6xl">
                 Brasília
               </p>
               <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
@@ -700,10 +681,10 @@ function Index() {
               <p className="text-xs font-medium tracking-[0.35em] text-gold">
                 SOBRE MIM
               </p>
-              <h2 className="mt-3 font-display text-4xl font-bold text-balance md:text-5xl">
+              <h2 className="mt-3 font-display text-4xl font-bold text-balance md:text-4xl">
                 Prazer, sou a{" "}
-                <span className="font-script text-5xl font-normal text-gold md:text-6xl">
-                  Lidy
+                <span className="font-script text-5xl font-normal text-gold md:text-5xl">
+                  Lidy Maria
                 </span>
               </h2>
               <p className="mt-6 leading-relaxed text-muted-foreground">
@@ -805,17 +786,16 @@ function Index() {
                 >
                   <img
                     src={item.src}
-                    alt={item.alt}
                     loading="lazy"
                     width={768}
                     height={960}
                     className="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <span className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-foreground/75 via-foreground/10 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <span className="font-script text-2xl text-card">
+                    <span className="font-script text-5xl text-card">
                       {item.label}
                     </span>
-                    <span className="mt-1 text-[11px] text-card/80">
+                    <span className="mt-1 text-[14px] text-card/80">
                       {item.description}
                     </span>
                     <span className="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-card/90 px-3 py-1.5 text-[11px] font-semibold text-foreground">
@@ -853,9 +833,8 @@ function Index() {
             </div>
 
             <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-3">
-              {moments.map(({ src, alt, label, video }) => (
+              {moments.map(({ src, video }) => (
                 <figure
-                  key={label}
                   className="group relative overflow-hidden rounded-2xl shadow-sm"
                 >
                   {video ? (
@@ -869,8 +848,7 @@ function Index() {
                     />
                   ) : (
                     <img
-                      src={src}
-                      alt={alt}
+                      src={src}                      
                       loading="lazy"
                       width={768}
                       height={960}
@@ -879,7 +857,7 @@ function Index() {
                   )}
                   <figcaption className="absolute bottom-3 left-3 flex items-center gap-2 rounded-full bg-transparent px-3 py-1.5 text-xs font-medium text-foreground">
                     {video ? <Play className="h-3 w-3 text-gold" /> : null}
-                    {label}
+                  
                   </figcaption>
                 </figure>
               ))}
