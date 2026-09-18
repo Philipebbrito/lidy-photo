@@ -31,7 +31,6 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 
-
 import videodepo from "@/assets/videodepo.mp4"
 import play from "@/assets/play.jpg"
 import depo1 from "@/assets/depo1.jpg"
@@ -505,6 +504,81 @@ function Index() {
     };
   }, []);
 
+  // Animações de entrada (hero) e de revelação ao rolar — sem biblioteca externa.
+  // Usa IntersectionObserver (o mesmo mecanismo do menu ativo acima), que reage a
+  // "esse elemento entrou na tela?" em vez de calcular posições absolutas de scroll —
+  // por isso não trava/desalinha quando imagens lazy mudam a altura da página.
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    // Entrada do HERO: dispara ao montar, com um pequeno atraso escalonado por grupo
+    const heroGroups: { selector: string; delay: number }[] = [
+      { selector: ".hero-script, .hero-title, .hero-text", delay: 0 },
+      { selector: ".hero-badge", delay: 300 },
+      { selector: ".hero-cta", delay: 450 },
+      { selector: ".hero-photo", delay: 150 },
+    ];
+
+    if (prefersReducedMotion) {
+      document
+        .querySelectorAll<HTMLElement>(
+          ".hero-anim, .reveal-up, .stagger-item",
+        )
+        .forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+
+    const heroTimeouts = heroGroups.map(({ selector, delay }) =>
+      setTimeout(() => {
+        document
+          .querySelectorAll<HTMLElement>(selector)
+          .forEach((el, i) => {
+            el.style.transitionDelay = `${i * 80}ms`;
+            el.classList.add("is-visible");
+          });
+      }, delay),
+    );
+
+    // Revelação ao rolar: cabeçalhos/cards isolados (.reveal-up) e grades com cascata
+    const singles = Array.from(
+      document.querySelectorAll<HTMLElement>(".reveal-up"),
+    );
+    const grids = Array.from(
+      document.querySelectorAll<HTMLElement>(
+        ".services-grid, .portfolio-grid, .moments-grid",
+      ),
+    );
+    const staggered: HTMLElement[] = [];
+    grids.forEach((grid) => {
+      Array.from(grid.children).forEach((child, i) => {
+        const el = child as HTMLElement;
+        el.classList.add("stagger-item");
+        el.style.transitionDelay = `${Math.min(i, 8) * 80}ms`;
+        staggered.push(el);
+      });
+    });
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
+    );
+    [...singles, ...staggered].forEach((el) => revealObserver.observe(el));
+
+    return () => {
+      heroTimeouts.forEach(clearTimeout);
+      revealObserver.disconnect();
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Sidebar
@@ -570,16 +644,16 @@ function Index() {
 
           <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2">
             <div>
-              <p className="mt-4 font-script text-7xl text-[#332418] tracking-wide leading-none flex items-center justify-start gap-1">
+              <p className="hero-script opacity-0 translate-y-6 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 mt-4 font-script text-7xl text-[#332418] tracking-wide leading-none flex items-center justify-start gap-1">
               Lidy Maria
               </p>
-              <h1 className="mt-4 font-display text-5xl leading-[0.80] font-bold text-balance md:text-6xl">
+              <h1 className="hero-title opacity-0 translate-y-6 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 mt-4 font-display text-5xl leading-[0.80] font-bold text-balance md:text-6xl">
                 Fotografia Infantil
               </h1>
-              <p className="mt-4 translate-y-2 font-script text-5xl text-gold md:text-6xl">
+              <p className="hero-script opacity-0 translate-y-6 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 mt-4 translate-y-2 font-script text-5xl text-gold md:text-6xl">
                 Brasília
               </p>
-              <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
+              <p className="hero-text opacity-0 translate-y-6 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
                 Uma experiência leve, acolhedora e inesquecível para toda a
                 família. Mais do que fotos, eternizo conexões verdadeiras que
                 merecem ser lembradas para sempre.
@@ -589,7 +663,7 @@ function Index() {
                 {badges.map(({ icon: Icon, title, sub }) => (
                   <div
                     key={title}
-                    className="flex flex-col items-center gap-1 rounded-xl border border-border bg-card/80 px-2 py-3 text-center shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:border-primary/50 hover:bg-card hover:shadow-md active:scale-95 cursor-pointer"
+                    className="hero-badge opacity-0 translate-y-4 transition-all duration-500 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 flex flex-col items-center gap-1 rounded-xl border border-border bg-card/80 px-2 py-3 text-center shadow-sm hover:-translate-y-1 hover:scale-[1.02] hover:border-primary/50 hover:bg-card hover:shadow-md active:scale-95 cursor-pointer"
                   >
                     <Icon className="h-4 w-4 text-gold" />
                     <p className="text-xs font-semibold">{title}</p>
@@ -603,14 +677,14 @@ function Index() {
                   href="https://wa.me/5561982120988?text=Ol%C3%A1%20Lidy!%20Quero%20agendar%20um%20ensaio%20fotogr%C3%A1fico."
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2 rounded-lg bg-gold px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_-8px_var(--gold)] transition-transform hover:scale-[1.03]"
+                  className="hero-cta opacity-0 translate-y-4 transition-all duration-500 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 flex items-center gap-2 rounded-lg bg-gold px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_-8px_var(--gold)] hover:scale-[1.03]"
                 >
                   <Phone className="h-4 w-4" />
                   Agendar pelo WhatsApp
                 </a>
                 <a
                   href="#portfolio"
-                  className="flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+                  className="hero-cta opacity-0 translate-y-4 transition-all duration-500 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3.5 text-sm font-medium text-foreground hover:bg-accent"
                 >
                   Ver Portfólio
                   <ChevronDown className="h-4 w-4 -rotate-90" />
@@ -618,7 +692,7 @@ function Index() {
               </div>
             </div>
 
-            <div className="relative mx-auto w-full max-w-md lg:max-w-none">
+            <div className="hero-photo opacity-0 scale-95 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:scale-100 relative mx-auto w-full max-w-md lg:max-w-none">
               <div
                 aria-hidden
                 className="absolute inset-6 rounded-[45%_55%_50%_50%/55%_45%_55%_45%] bg-secondary"
@@ -677,7 +751,7 @@ function Index() {
                 <p className="text-xs">anos de história</p>
               </div>
             </div>
-            <div className="order-1 lg:order-2">
+            <div className="reveal-up opacity-0 translate-y-8 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 order-1 lg:order-2">
               <p className="text-xs font-medium tracking-[0.35em] text-gold">
                 SOBRE MIM
               </p>
@@ -720,7 +794,7 @@ function Index() {
           className="scroll-mt-8 bg-secondary/60 px-6 py-24 lg:px-16"
         >
           <div className="mx-auto max-w-6xl">
-            <div className="text-center">
+            <div className="reveal-up opacity-0 translate-y-8 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 text-center">
               <p className="text-xs font-medium tracking-[0.35em] text-gold">
                 O QUE OFERECEMOS?
               </p>
@@ -733,11 +807,11 @@ function Index() {
               <div className="leaf-divider" />
             </div>
 
-            <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="services-grid mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {services.map(({ icon: Icon, title, text }) => (
                 <div
                   key={title}
-                  className="group rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+                  className="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 group rounded-2xl border border-border bg-card p-6 shadow-sm hover:-translate-y-1 hover:shadow-lg"
                 >
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent text-gold transition-colors group-hover:bg-gold group-hover:text-primary-foreground">
                     <Icon className="h-5 w-5" />
@@ -762,7 +836,7 @@ function Index() {
         {/* PORTFÓLIO */}
         <section id="portfolio" className="scroll-mt-8 px-6 py-24 lg:px-16">
           <div className="mx-auto max-w-6xl">
-            <div className="text-center">
+            <div className="reveal-up opacity-0 translate-y-8 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 text-center">
               <p className="text-xs font-medium tracking-[0.35em] text-gold">
                 HISTÓRIAS ETERNIZADAS
               </p>
@@ -775,14 +849,14 @@ function Index() {
               <div className="leaf-divider" />
             </div>
 
-            <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-3">
+            <div className="portfolio-grid mt-14 grid grid-cols-2 gap-4 md:grid-cols-3">
               {portfolio.map((item, index) => (
                 <button
                   key={item.label}
                   type="button"
                   onClick={() => setGallery({ index, photo: 0 })}
                   aria-label={`Abrir galeria de ${item.label}`}
-                  className="group relative overflow-hidden rounded-2xl text-left shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl focus:ring-2 focus:ring-gold focus:outline-none"
+                  className="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 group relative overflow-hidden rounded-2xl text-left shadow-sm hover:-translate-y-1 hover:shadow-xl focus:ring-2 focus:ring-gold focus:outline-none"
                 >
                   <img
                     src={item.src}
@@ -819,7 +893,7 @@ function Index() {
           className="scroll-mt-8 bg-secondary/60 px-6 py-24 lg:px-16"
         >
           <div className="mx-auto max-w-6xl">
-            <div className="text-center">
+            <div className="reveal-up opacity-0 translate-y-8 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 text-center">
               <p className="text-xs font-medium tracking-[0.35em] text-gold">
                 REGISTROS DO DIA A DIA
               </p>
@@ -832,10 +906,11 @@ function Index() {
               <div className="leaf-divider" />
             </div>
 
-            <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-3">
-              {moments.map(({ src, video }) => (
+            <div className="moments-grid mt-14 grid grid-cols-2 gap-4 md:grid-cols-3">
+              {moments.map(({ src, video }, i) => (
                 <figure
-                  className="group relative overflow-hidden rounded-2xl shadow-sm"
+                  key={src + i}
+                  className="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 group relative overflow-hidden rounded-2xl shadow-sm"
                 >
                   {video ? (
                     <video
@@ -867,7 +942,7 @@ function Index() {
 
         {/* CONTATO */}
         <section id="contato" className="scroll-mt-8 px-6 py-24 lg:px-16">
-          <div className="mx-auto max-w-4xl rounded-3xl border border-border bg-card p-8 shadow-xl md:p-14">
+          <div className="reveal-up opacity-0 translate-y-8 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 mx-auto max-w-4xl rounded-3xl border border-border bg-card p-8 shadow-xl md:p-14">
             <div className="text-center">
               <p className="text-xs font-medium tracking-[0.35em] text-gold">
                 VAMOS CONVERSAR?
