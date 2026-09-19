@@ -252,7 +252,7 @@ function Sidebar({
 }) {
   return (
     <aside
-      className={`fixed inset-y-0 left-0 z-50 flex w-80 flex-col border-r border-border bg-card px-5 py-6 transition-transform duration-300 lg:translate-x-0 ${
+      className={`fixed inset-y-0 left-0 z-50 flex w-80 flex-col border-r border-border bg-card px-5 py-6 transition-transform duration-300 ${
         open ? "translate-x-0" : "-translate-x-full"
       }`}
     >
@@ -276,13 +276,6 @@ function Sidebar({
             </p>
           </div>
         </div>
-        <button
-          onClick={onClose}
-          className="text-muted-foreground lg:hidden"
-          aria-label="Fechar menu"
-        >
-          <X className="h-5 w-5" />
-        </button>
       </div>
 
       <nav className="mt-8 flex flex-col gap-1">
@@ -476,7 +469,7 @@ function GalleryLightbox({
 }
 
 function Index() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(true);
   const [gallery, setGallery] = useState<GalleryState>(null);
   const [active, setActive] = useState("inicio");
   const [showTop, setShowTop] = useState(false);
@@ -619,14 +612,24 @@ function Index() {
 
 
       <button
-        onClick={() => setMenuOpen(true)}
-        aria-label="Abrir menu"
-        className="fixed top-4 left-4 z-40 flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-card text-foreground shadow-sm lg:hidden"
+        onClick={() => setMenuOpen((v) => !v)}
+        aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+        className={`fixed top-4 z-[60] flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground shadow-md transition-[left] duration-300 hover:text-foreground ${
+          menuOpen ? "left-[21rem]" : "left-4"
+        }`}
       >
-        <Menu className="h-5 w-5" />
+        {menuOpen ? (
+          <ChevronLeft className="h-4 w-4" />
+        ) : (
+          <ChevronRight className="h-4 w-4" />
+        )}
       </button>
 
-      <main className="lg:pl-56">
+      <main
+        className={`transition-[padding] duration-300 ${
+          menuOpen ? "lg:pl-80" : "lg:pl-0"
+        }`}
+      >
         {/* HERO */}
         <section
           id="inicio"
