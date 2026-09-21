@@ -249,94 +249,79 @@ function Sidebar({
   onClose: () => void;
   active: string;
 }) {
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const targetElement = document.getElementById("inicio") || document.getElementById("Inicio");
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <aside
       className={`fixed inset-y-0 left-0 z-50 flex w-80 flex-col border-r border-border bg-card px-5 py-6 transition-transform duration-300 ${
         open ? "translate-x-0" : "-translate-x-full"
       }`}
     >
+      {/* Bloco do cabeçalho transformado em link clicável */}
       <div className="flex items-start self-center">
-        <div className="flex flex-col items-center gap-3 self-center">
+        <a
+          href="#inicio"
+          onClick={handleLogoClick}
+          className="group flex flex-col items-center gap-3 self-center cursor-pointer transition-transform duration-200 hover:scale-105 focus:outline-none"
+          aria-label="Ir para o início"
+        >
           <div className="relative">
             <img
               src={photographer}
               alt="Lidy Maria, fotógrafa especialista em fotografia infantil"
-              className="h-35 w-35 rounded-full border-4 border-gold object-cover"
+              className="h-35 w-35 rounded-full border-4 border-gold object-cover transition-shadow duration-300 group-hover:shadow-md"
               width={100}
               height={100}
             />
           </div>
           <div className="text-center">
-            <p className="font-script text-6xl text-[#332418] tracking-wide leading-none flex items-center justify-center gap-1">
+            <p className="font-script text-6xl text-[#332418] tracking-wide leading-none flex items-center justify-center gap-1 transition-colors duration-200 group-hover:text-gold">
               Lidy Maria
             </p>
             <p className="mt-1 text-[16px] tracking-[0.35em] text-muted-foreground">
               FOTOGRAFIA
             </p>
           </div>
-        </div>
+        </a>
       </div>
 
       <nav className="mt-8 flex flex-col gap-1">
-  {navItems.map(({ id, label, icon: Icon }) => {
-    // Normaliza ambos os lados para minúsculas antes de comparar
-    const isActive = active?.toLowerCase() === id?.toLowerCase();
+        {navItems.map(({ id, label, icon: Icon }) => {
+          const isActive = active?.toLowerCase() === id?.toLowerCase();
 
-    return (
-      <a
-        key={id}
-        href={`#${id.toLowerCase()}`}
-        onClick={(e) => {
-          // Garante a rolagem e atualização do link mesmo se o ID tiver variações de caixa
-          const targetElement = document.getElementById(id) || document.getElementById(id.toLowerCase());
-          if (targetElement) {
-            e.preventDefault();
-            targetElement.scrollIntoView({ behavior: "smooth" });
-          }
-
-        }}
-        aria-current={isActive ? "true" : undefined}
-        className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-300 ${
-          isActive
-            ? "translate-x-1 bg-primary font-medium text-primary-foreground shadow-sm"
-            : "text-muted-foreground hover:translate-x-1 hover:bg-accent hover:text-accent-foreground"
-        }`}
-      >
-        <Icon className="h-4 w-4" />
-        {label}
-      </a>
-    );
-  })}
-</nav>
-
-
-      <a
-        href="#contato"
-        onClick={onClose}
-        className="mt-6 flex items-center justify-center gap-2 rounded-lg bg-gold px-4 py-3 text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_-10px_var(--gold)] transition-transform hover:scale-[1.02]"
-      >
-        <CalendarCheck className="h-4 w-4" />
-        Agendar Agora
-      </a>
-
-      <div className="mt-auto flex flex-col items-center gap-3 pt-8">
-        <p className="text-[14px] tracking-[0.3em] text-muted-foreground">
-          SIGA-ME
-        </p>
-        <a
-          href="https://www.instagram.com/lidymariafotografia/"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Instagram da Lidy Maria Fotografia"
-          className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:border-gold hover:text-gold"
-        >
-          <Instagram className="h-4 w-4" />
-        </a>
-        <div className="mt-4 text-center text-[12px] leading-relaxed text-muted-foreground">
-          <p>© 2026 Lidy Maria Fotografia</p>
-          <p>Todos os direitos reservados.</p>
-        </div>
-      </div>
+          return (
+            <a
+              key={id}
+              href={`#${id.toLowerCase()}`}
+              onClick={(e) => {
+                const targetElement =
+                  document.getElementById(id) || document.getElementById(id.toLowerCase());
+                if (targetElement) {
+                  e.preventDefault();
+                  targetElement.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              aria-current={isActive ? "true" : undefined}
+              className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-300 ${
+                isActive
+                  ? "translate-x-1 bg-primary font-medium text-primary-foreground shadow-sm"
+                  : "text-muted-foreground hover:translate-x-1 hover:bg-accent hover:text-accent-foreground"
+              }`}
+            >
+              <Icon className="h-4 w-4" />
+              {label}
+            </a>
+          );
+        })}
+      </nav>
     </aside>
   );
 }
