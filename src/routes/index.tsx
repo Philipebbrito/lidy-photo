@@ -39,7 +39,6 @@ import depo4 from "@/assets/depo4.jpg"
 import depo5 from "@/assets/depo5.jpg"
 import depo6 from "@/assets/depo6.jpg"
 import photographer from "@/assets/photographer.jpg";
-import capa from "@/assets/CAPA.jpg";
 import baby1 from "@/assets/baby-1.jpg";
 import baby2 from "@/assets/baby-2.jpg";
 import baby3 from "@/assets/baby-3.jpg";
@@ -294,6 +293,7 @@ function Sidebar({
             e.preventDefault();
             targetElement.scrollIntoView({ behavior: "smooth" });
           }
+
         }}
         aria-current={isActive ? "true" : undefined}
         className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-300 ${
@@ -646,8 +646,8 @@ function Index() {
 
           <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2">
             <div>
-              <p className="hero-script opacity-0 translate-y-6 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 mt-4 font-script text-7xl text-[#332418] tracking-wide leading-none flex items-center justify-start gap-1">
-              Lidy Maria
+              <p className="hero-script mt-4 font-script text-7xl text-gold tracking-wide leading-none flex items-center justify-start gap-1 transition-all duration-300 [.sidebar-expanded_&]:opacity-0 [.sidebar-expanded_&]:invisible">
+                Lidy Maria
               </p>
               <h1 className="hero-title opacity-0 translate-y-6 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 mt-4 font-display text-5xl leading-[0.80] font-bold text-balance md:text-6xl">
                 Fotografia Infantil
@@ -700,7 +700,7 @@ function Index() {
                 className="absolute inset-6 rounded-[45%_55%_50%_50%/55%_45%_55%_45%] bg-secondary"
               />
               <img
-                src={capa}
+                src={baby2}
                 alt="Lidy Maria sorrindo e segurando sua câmera profissional"
                 className="relative mx-auto aspect-[4/5] w-full max-w-sm rounded-[45%_55%_50%_50%/55%_45%_55%_45%] object-cover object-top shadow-2xl transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2 hover:rotate-1 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.35)] active:scale-95 cursor-pointer"
                 width={1024}
