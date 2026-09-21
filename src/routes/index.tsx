@@ -53,6 +53,9 @@ import smash4 from "@/assets/smashthecake/smash4.jpg";
 import smash5 from "@/assets/smashthecake/smash5.jpg";
 import smash6 from "@/assets/smashthecake/smash6.jpg";
 import smash7 from "@/assets/smashthecake/smash7.jpg";
+import smash8 from "@/assets/smashthecake/smash8.jpg";
+import smash9 from "@/assets/smashthecake/smash9.jpg";
+import smash10 from "@/assets/smashthecake/smash10.jpg";
 import aniversario1 from "@/assets/aniversario/aniversario1.jpg";
 import aniversario2 from "@/assets/aniversario/aniversario2.jpg";
 import aniversario3 from "@/assets/aniversario/aniversario3.jpg";
@@ -157,6 +160,9 @@ const portfolio: {
       { src: smash6 },
       { src: smash3 },
       { src: smash1 },
+      { src: smash8 },
+      { src: smash9 },
+      { src: smash10 },
     ],
   },
   {

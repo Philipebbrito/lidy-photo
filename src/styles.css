@@ -116,3 +116,22 @@
     );
   }
 }
+/* Rede de segurança: se por qualquer motivo o JS de reveal não rodar
+   (erro, falha de hidratação, etc.), o conteúdo aparece sozinho depois
+   de 2.5s via CSS puro — sem depender de nada em JavaScript. */
+@keyframes forceReveal {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-title,
+.hero-text,
+.hero-badge,
+.hero-cta,
+.hero-photo,
+.reveal-up,
+.stagger-item {
+  animation: forceReveal 0.01s linear 2.5s forwards;
+}
