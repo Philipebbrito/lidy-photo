@@ -56,6 +56,10 @@ import smash7 from "@/assets/smashthecake/smash7.jpg";
 import smash8 from "@/assets/smashthecake/smash8.jpg";
 import smash9 from "@/assets/smashthecake/smash9.jpg";
 import smash10 from "@/assets/smashthecake/smash10.jpg";
+import smash11 from "@/assets/smashthecake/smash11.jpg";
+import smash12 from "@/assets/smashthecake/smash12.jpg";
+import smash13 from "@/assets/smashthecake/smash13.jpg";
+import smash13capa from "@/assets/smashthecake/smash13capa.jpg";
 import aniversario1 from "@/assets/aniversario/aniversario1.jpg";
 import aniversario2 from "@/assets/aniversario/aniversario2.jpg";
 import aniversario3 from "@/assets/aniversario/aniversario3.jpg";
@@ -101,8 +105,8 @@ export const Route = createFileRoute("/")({
 const navItems = [
   { id: "inicio", label: "Início", icon: Home },
   { id: "sobre", label: "Sobre", icon: User },
-  { id: "servicos", label: "Serviços", icon: Camera },
   { id: "portfolio", label: "Portfólio", icon: Images },
+  { id: "servicos", label: "Serviços", icon: Camera }, 
   { id: "depoimentos", label: "Depoimentos", icon: ClipboardPenLine },
   { id: "contato", label: "Contato", icon: Mail },
 ];
@@ -154,7 +158,7 @@ const portfolio: {
 }[] = [
   {
     src: smash6,
-    label: "Smash the Cake",
+    label: "Smash the Cake - Menina",
     description: "Bolo, bagunça e muita risada no primeiro ano.",
     gallery: [
       { src: smash6 },
@@ -162,18 +166,22 @@ const portfolio: {
       { src: smash1 },
       { src: smash8 },
       { src: smash9 },
-      { src: smash10 },
+      { src: smash11 },
+      { src: smash13 },
+      { src: smash13capa },
     ],
   },
   {
     src: smash2,
-    label: "Smash the Cake",
+    label: "Smash the Cake - Menino",
     description: "Bolo, bagunça e muita risada no primeiro ano.",
     gallery: [
       { src: smash2 },
       { src: smash4 },
       { src: smash5 },
       { src: smash7 },
+      { src: smash12 },
+      { src: baby2 },
     ],
   },
   {
@@ -328,6 +336,15 @@ function Sidebar({
           );
         })}
       </nav>
+      <a
+        href="https://www.instagram.com/lidymariafotografia/"
+        target="_blank"
+        rel="noreferrer"
+        className="mt-auto flex w-full items-center justify-center gap-2 rounded-lg border border-border px-8 py-4 text-sm font-medium transition-colors hover:bg-accent sm:w-auto"
+      >
+        <Instagram className="h-4 w-4" />
+        Ver Instagram
+      </a>
     </aside>
   );
 }
@@ -459,10 +476,21 @@ function GalleryLightbox({
 }
 
 function Index() {
+  // Começa aberto para evitar que a hidratação do servidor o deixe fechado no desktop.
   const [menuOpen, setMenuOpen] = useState(true);
   const [gallery, setGallery] = useState<GalleryState>(null);
   const [active, setActive] = useState("inicio");
   const [showTop, setShowTop] = useState(false);
+
+  // Sidebar aberto por padrão no desktop; fechado no mobile, inclusive ao redimensionar.
+  useEffect(() => {
+    const desktopQuery = window.matchMedia("(min-width: 1024px)");
+    const syncMenuWithViewport = () => setMenuOpen(desktopQuery.matches);
+
+    syncMenuWithViewport();
+    desktopQuery.addEventListener("change", syncMenuWithViewport);
+    return () => desktopQuery.removeEventListener("change", syncMenuWithViewport);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -605,7 +633,7 @@ function Index() {
         onClick={() => setMenuOpen((v) => !v)}
         aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
         className={`fixed top-4 z-[60] flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground shadow-md transition-[left] duration-300 hover:text-foreground ${
-          menuOpen ? "left-[21rem]" : "left-4"
+          menuOpen ? "left-4 lg:left-[21rem]" : "left-4"
         }`}
       >
         {menuOpen ? (
@@ -637,13 +665,13 @@ function Index() {
 
           <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2">
             <div>
-              <p className="hero-script mt-4 font-script text-7xl text-gold tracking-wide leading-none flex items-center justify-start gap-1 transition-all duration-300 [.sidebar-expanded_&]:opacity-0 [.sidebar-expanded_&]:invisible">
+              <p className="hero-script opacity-0 translate-y-6 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 mt-2 translate-y-2 font-script text-5xl text-gold md:text-7xl">
                 Lidy Maria
               </p>
               <h1 className="hero-title opacity-0 translate-y-6 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 mt-4 font-display text-5xl leading-[0.80] font-bold text-balance md:text-6xl">
                 Fotografia Infantil
               </h1>
-              <p className="hero-script opacity-0 translate-y-6 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 mt-4 translate-y-2 font-script text-5xl text-gold md:text-6xl">
+              <p className="hero-script opacity-0 translate-y-6 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 mt-8 translate-y-2 font-script text-5xl text-gold md:text-6xl">
                 Brasília
               </p>
               <p className="hero-text opacity-0 translate-y-6 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
@@ -666,7 +694,7 @@ function Index() {
               </div>
 
               <div className="mt-8 flex flex-wrap gap-4">
-                <a
+                {/* <a
                   href="https://wa.me/5561982120988?text=Ol%C3%A1%20Lidy!%20Quero%20agendar%20um%20ensaio%20fotogr%C3%A1fico."
                   target="_blank"
                   rel="noreferrer"
@@ -674,7 +702,7 @@ function Index() {
                 >
                   <Phone className="h-4 w-4" />
                   Agendar pelo WhatsApp
-                </a>
+                </a> */}
                 <a
                   href="#portfolio"
                   className="hero-cta opacity-0 translate-y-4 transition-all duration-500 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3.5 text-sm font-medium text-foreground hover:bg-accent"
@@ -699,7 +727,7 @@ function Index() {
               />
               {/* baby photos strip */}
               <div className="absolute top-4 -right-2 hidden w-36 flex-col gap-3 md:flex lg:-right-6 lg:w-44">
-                {[baby1, clean2, baby3].map((src, i) => (
+                {[smash11, smash12, smash13capa].map((src, i) => (
                   <img
                     key={i}
                     src={src}
@@ -740,8 +768,8 @@ function Index() {
                 className="w-full rounded-3xl object-cover shadow-xl"
               />
               <div className="absolute -bottom-6 -right-4 rounded-2xl bg-gold px-6 py-4 text-primary-foreground shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:brightness-110 active:scale-95 cursor-pointer select-none lg:-right-8">
-                <p className="font-display text-3xl font-bold">11+</p>
-                <p className="text-xs">anos de história</p>
+                <p className="font-display text-5xl font-bold">11+</p>
+                <p className="text-2x1">anos de história</p>
               </div>
             </div>
             <div className="reveal-up opacity-0 translate-y-8 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 order-1 lg:order-2">
@@ -767,9 +795,9 @@ function Index() {
               </p>
               <ul className="mt-6 space-y-3">
                 {[
-                  "Especialista em Smash The Cake",
-                  "Proporcionamos uma experiência completa: Cenários exclusivos, Bolo, figurino, participação dos pais e irmãos",
-                  "Atendimento em estúdio em Taguatinga - Brasília DF",
+                  "Especialista em Smash The Cake.",
+                  "Proporcionamos uma experiência completa: Cenários exclusivos, Bolo, figurino, participação dos pais e irmãos.",
+                  "Atendimento em estúdio em Taguatinga - Brasília DF.",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm">
                     <Flower2 className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
@@ -780,51 +808,7 @@ function Index() {
             </div>
           </div>
         </section>
-
-        {/* SERVIÇOS */}
-        <section
-          id="servicos"
-          className="scroll-mt-8 bg-secondary/60 px-6 py-24 lg:px-16"
-        >
-          <div className="mx-auto max-w-6xl">
-            <div className="reveal-up opacity-0 translate-y-8 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 text-center">
-              <p className="text-xs font-medium tracking-[0.35em] text-gold">
-                O QUE OFERECEMOS?
-              </p>
-              <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
-                Uma Experiência
-              </h2>
-              <p className="mt-3 font-script text-4xl text-gold">
-                para cada fase da sua história
-              </p>
-              <div className="leaf-divider" />
-            </div>
-
-            <div className="services-grid mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {services.map(({ icon: Icon, title, text }) => (
-                <div
-                  key={title}
-                  className="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 group rounded-2xl border border-border bg-card p-6 shadow-sm hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent text-gold transition-colors group-hover:bg-gold group-hover:text-primary-foreground">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="mt-5 font-display text-xl font-semibold">
-                    {title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    {text}
-                  </p>
-                </div>
-                
-              ))}
-            </div>
-            <p className="mt-20 text-center font-script text-4xl text-gold">
-              mais do que fotografias, memórias construídas com cuidado, sensibilidade e propósito
-            </p>
-          </div>
-          
-        </section>
+        
 
         {/* PORTFÓLIO */}
         <section id="portfolio" className="scroll-mt-8 px-6 py-24 lg:px-16">
@@ -878,6 +862,51 @@ function Index() {
             </div>
 
           </div>
+        </section>
+
+        {/* SERVIÇOS */}
+        <section
+          id="servicos"
+          className="scroll-mt-8 bg-secondary/60 px-6 py-24 lg:px-16"
+        >
+          <div className="mx-auto max-w-6xl">
+            <div className="reveal-up opacity-0 translate-y-8 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 text-center">
+              <p className="text-xs font-medium tracking-[0.35em] text-gold">
+                O QUE OFERECEMOS?
+              </p>
+              <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
+                Uma Experiência
+              </h2>
+              <p className="mt-3 font-script text-4xl text-gold">
+                para cada fase da sua história
+              </p>
+              <div className="leaf-divider" />
+            </div>
+
+            <div className="services-grid mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {services.map(({ icon: Icon, title, text }) => (
+                <div
+                  key={title}
+                  className="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 group rounded-2xl border border-border bg-card p-6 shadow-sm hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent text-gold transition-colors group-hover:bg-gold group-hover:text-primary-foreground">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-5 font-display text-xl font-semibold">
+                    {title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    {text}
+                  </p>
+                </div>
+                
+              ))}
+            </div>
+            <p className="mt-20 text-center font-script text-4xl text-gold">
+              mais do que fotografias, memórias construídas com cuidado, sensibilidade e propósito
+            </p>
+          </div>
+          
         </section>
 
         {/* MOMENTOS (fotos e vídeos) */}
