@@ -764,7 +764,7 @@ function Index() {
               />
               <div className="absolute -bottom-6 -right-4 rounded-2xl bg-gold px-6 py-4 text-primary-foreground shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:brightness-110 active:scale-95 cursor-pointer select-none lg:-right-8">
                 <p className="font-display text-5xl font-bold">11+</p>
-                <p className="text-2x1">anos de história</p>
+                <p className="text-2x1">Anos de história</p>
               </div>
             </div>
             <div className="reveal-up opacity-0 translate-y-8 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 order-1 lg:order-2">
@@ -816,7 +816,7 @@ function Index() {
                 Portfólio
               </h2>
               <p className="mt-3 font-script text-4xl text-gold">
-                um pouquinho do meu olhar
+                Um pouquinho do meu olhar
               </p>
               <div className="leaf-divider" />
             </div>
@@ -885,7 +885,7 @@ function Index() {
                 Uma Experiência
               </h2>
               <p className="mt-3 font-script text-4xl text-gold">
-                para cada fase da sua história
+                Para cada fase da sua história
               </p>
               <div className="leaf-divider" />
             </div>
@@ -914,7 +914,7 @@ function Index() {
               ))}
             </div>
             <p className="mt-20 text-center font-script text-4xl text-gold">
-              mais do que fotografias, memórias construídas com cuidado, sensibilidade e propósito
+              Mais do que fotografias, memórias construídas com cuidado, sensibilidade e propósito.
             </p>
           </div>
         </section>
@@ -933,7 +933,7 @@ function Index() {
                 Depoimentos
               </h2>
               <p className="mt-3 font-script text-4xl text-gold">
-                histórias de quem já passou por aqui!
+                Histórias de quem já passou por aqui!
               </p>
               <div className="leaf-divider" />
             </div>
@@ -983,7 +983,7 @@ function Index() {
                 Agende o seu ensaio
               </h2>
               <p className="mt-3 font-script text-4xl text-gold">
-                sua história merece ser lembrada
+                Sua história merece ser lembrada
               </p>
               <p className="mx-auto mt-5 max-w-lg text-sm leading-relaxed text-muted-foreground">
                 As vagas são limitadas para garantir dedicação total a cada
