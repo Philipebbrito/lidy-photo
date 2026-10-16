@@ -34,11 +34,13 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
+    if (error instanceof Error) {
+      reportLovableError(error, { boundary: "tanstack_root_error_component" });
+    }
   }, [error]);
 
   return (
@@ -77,8 +79,49 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+
+      /* Verificação do Google Search Console */
+      {
+        name: "google-site-verification",
+        content: "I0TuXGlMNnzvwrybyjk94Vzd8jEUz0HNQwRvx6HwBUs",
+      },
+
+      /* SEO Principal */
+      { title: "Lidy Maria Fotografia | Ensaios Fotográficos e Eventos" },
+      {
+        name: "description",
+        content:
+          "Fotografia profissional, ensaios fotográficos, gestão de eventos e registos inesquecíveis. Agende o seu ensaio.",
+      },
+
+      /* Open Graph / WhatsApp / Facebook */
       { property: "og:type", content: "website" },
+      { property: "og:title", content: "Lidy Maria Fotografia | Ensaios e Eventos" },
+      {
+        property: "og:description",
+        content:
+          "Fotografia profissional, ensaios fotográficos e cobertura de eventos. Entre em contacto para saber mais.",
+      },
+      { property: "og:url", content: "https://www.lidymariafotografia.com.br/" },
+      {
+        property: "og:image",
+        content: "https://www.lidymariafotografia.com.br/og-image.png",
+      },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+
+      /* Twitter / X */
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Lidy Maria Fotografia | Ensaios e Eventos" },
+      {
+        name: "twitter:description",
+        content:
+          "Fotografia profissional, ensaios fotográficos e cobertura de eventos.",
+      },
+      {
+        name: "twitter:image",
+        content: "https://www.lidymariafotografia.com.br/og-image.png",
+      },
     ],
     links: [
       {
@@ -106,7 +149,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>
@@ -128,4 +171,3 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
-
