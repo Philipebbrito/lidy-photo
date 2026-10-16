@@ -36,7 +36,7 @@ import play from "@/assets/play.jpg"
 import depo1 from "@/assets/depo1.jpg"
 import depo2 from "@/assets/depo2.jpg"
 import depo4 from "@/assets/depo4.jpg"
-import depo5 from "@/assets/depo5.jpg"
+import depo5 from "@/assets/depo5.png"
 import depo6 from "@/assets/depo6.jpg"
 import photographer from "@/assets/photographer.jpg";
 import baby1 from "@/assets/baby-1.jpg";
@@ -122,27 +122,31 @@ const services = [
   {
     icon: CakeSlice,
     title: "Smash the Cake",
+    price: "A partir de R$ 999,90",
     text: "Uma experiência completa para celebrar o primeiro aniversário do seu bebê, com cenário exclusivo, momentos em família e memórias cheias de afeto.",
   },
   {
     icon: Heart,
     title: "Acompanhamento do Bebê",
+    price: "A partir de R$ 399,90",
     text: "Cada fase merece ser lembrada. Ensaios pensados para acompanhar o crescimento do seu bebê e registrar, com delicadeza, cada nova descoberta.",
   },
-  
   {
     icon: Camera,
     title: "Ensaio Clean",
+    price: "A partir de R$ 399,90",
     text: "Uma proposta leve, atemporal e delicada, em que olhares, expressões e conexões se tornam os elementos mais importantes de cada registro.",
   },
   {
     icon: Cake,
     title: "Ensaio de Aniversário",
+    price: "A partir de R$ 749,90",
     text: "Uma experiência especial para celebrar mais um capítulo da infância, com um cenário exclusivo e cheio de personalidade para contar essa história.",
   },
   {
     icon: Users,
     title: "Ensaio em Família",
+    price: "A partir de R$ 399,90",
     text: "Uma experiência para desacelerar, estar presente e transformar o amor, a cumplicidade e a conexão da sua família em memórias para sempre.",
   },
 ];
@@ -336,15 +340,6 @@ function Sidebar({
           );
         })}
       </nav>
-      <a
-        href="https://www.instagram.com/lidymariafotografia/"
-        target="_blank"
-        rel="noreferrer"
-        className="mt-auto flex w-full items-center justify-center gap-2 rounded-lg border border-border px-8 py-4 text-sm font-medium transition-colors hover:bg-accent sm:w-auto"
-      >
-        <Instagram className="h-4 w-4" />
-        Ver Instagram
-      </a>
     </aside>
   );
 }
@@ -860,8 +855,20 @@ function Index() {
                 </button>
               ))}
             </div>
+            <div className="mt-12 flex justify-center">
+              <a
+                href="https://wa.me/5561982120988?text=Ol%C3%A1%20Lidy!%20Quero%20agendar%20um%20ensaio%20fotogr%C3%A1fico."
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-gold px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_-8px_var(--gold)] transition-transform hover:scale-105"
+              >
+                <Phone className="h-4 w-4" />
+                Agende a sua experiência!
+              </a>
+            </div>
 
           </div>
+          
         </section>
 
         {/* SERVIÇOS */}
@@ -883,30 +890,33 @@ function Index() {
               <div className="leaf-divider" />
             </div>
 
-            <div className="services-grid mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {services.map(({ icon: Icon, title, text }) => (
+            <div className="services-grid mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {services.map(({ icon: Icon, title, price, text }) => (
                 <div
                   key={title}
-                  className="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 group rounded-2xl border border-border bg-card p-6 shadow-sm hover:-translate-y-1 hover:shadow-lg"
+                  className="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0 group flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-sm hover:-translate-y-1 hover:shadow-lg"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent text-gold transition-colors group-hover:bg-gold group-hover:text-primary-foreground">
-                    <Icon className="h-5 w-5" />
+                  <div>
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent text-gold transition-colors group-hover:bg-gold group-hover:text-primary-foreground">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="mt-5 font-display text-xl font-semibold">
+                      {title}
+                    </h3>                    
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                      {text}
+                    </p>
+                    <p className="mt-1 font-display text-lg font-bold text-gold">
+                      {price}
+                    </p>
                   </div>
-                  <h3 className="mt-5 font-display text-xl font-semibold">
-                    {title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    {text}
-                  </p>
                 </div>
-                
               ))}
             </div>
             <p className="mt-20 text-center font-script text-4xl text-gold">
               mais do que fotografias, memórias construídas com cuidado, sensibilidade e propósito
             </p>
           </div>
-          
         </section>
 
         {/* MOMENTOS (fotos e vídeos) */}
@@ -990,16 +1000,7 @@ function Index() {
                 className="flex w-full items-center justify-center gap-2 rounded-lg bg-gold px-8 py-4 text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_-8px_var(--gold)] transition-transform hover:scale-[1.03] sm:w-auto"
               >
                 <Phone className="h-4 w-4" />
-                Chamar no WhatsApp
-              </a>
-              <a
-                href="https://www.instagram.com/lidymariafotografia/"
-                target="_blank"
-                rel="noreferrer"
-                className="flex w-full items-center justify-center gap-2 rounded-lg border border-border px-8 py-4 text-sm font-medium transition-colors hover:bg-accent sm:w-auto"
-              >
-                <Instagram className="h-4 w-4" />
-                Ver Instagram
+                Agende a sua experiência!
               </a>
             </div>
 
