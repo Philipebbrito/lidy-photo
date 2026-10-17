@@ -1015,7 +1015,7 @@ function Index() {
               </span>
               <span className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-gold" />
-                contato@lidymaria.com.br
+                Lidymariafotografia1@gmail.com
               </span>
             </div>
           </div>
