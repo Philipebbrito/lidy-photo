@@ -346,6 +346,11 @@ function Sidebar({
 
 const WHATSAPP_URL = "https://wa.me/5561982120988?text=Ol%C3%A1%20Lidy!%20Quero%20agendar%20um%20ensaio%20fotogr%C3%A1fico.";
 
+// Meta Pixel — registra o clique no WhatsApp; "origem" mostra qual botão gerou o clique
+const trackContact = (origem: string) => {
+  (window as any).fbq?.("track", "Contact", { content_name: origem });
+};
+
 type GalleryState = { index: number; photo: number } | null;
 
 function GalleryLightbox({
@@ -460,6 +465,7 @@ function GalleryLightbox({
           href={WHATSAPP_URL}
           target="_blank"
           rel="noreferrer"
+          onClick={() => trackContact("galeria")}
           className="mt-5 flex items-center justify-center gap-2 rounded-lg bg-gold px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.02]"
         >
           <MessageCircle className="h-4 w-4" />
@@ -606,6 +612,7 @@ function Index() {
         href={WHATSAPP_URL}
         target="_blank"
         rel="noreferrer"
+        onClick={() => trackContact("flutuante")}
         aria-label="Falar no WhatsApp"
         className="fixed right-5 bottom-5 z-40 flex items-center gap-2 rounded-full bg-[#11c258] px-5 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_12px_30px_-8px_var(--gold)] transition-transform hover:scale-105"
       >
@@ -857,9 +864,10 @@ function Index() {
             </div>
             <div className="mt-12 flex justify-center">
               <a
-                href="https://wa.me/5561982120988?text=Ol%C3%A1%20Lidy!%20Quero%20agendar%20um%20ensaio%20fotogr%C3%A1fico."
+                href={WHATSAPP_URL}
                 target="_blank"
                 rel="noreferrer"
+                onClick={() => trackContact("portfolio")}
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-gold px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_-8px_var(--gold)] transition-transform hover:scale-105"
               >
                 <Phone className="h-4 w-4" />
@@ -994,9 +1002,10 @@ function Index() {
 
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <a
-                href="https://wa.me/5561982120988?text=Ol%C3%A1%20Lidy!%20Quero%20agendar%20um%20ensaio%20fotogr%C3%A1fico."
+                href={WHATSAPP_URL}
                 target="_blank"
                 rel="noreferrer"
+                onClick={() => trackContact("contato")}
                 className="flex w-full items-center justify-center gap-2 rounded-lg bg-gold px-8 py-4 text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_-8px_var(--gold)] transition-transform hover:scale-[1.03] sm:w-auto"
               >
                 <Phone className="h-4 w-4" />
